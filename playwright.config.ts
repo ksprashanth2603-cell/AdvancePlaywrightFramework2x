@@ -51,14 +51,15 @@ export default defineConfig({
   reporter: [
     ['html'],
     ['list'],
+    ['./src/utils/CustomReporter.ts'],
   ],
 
   use: {
-    baseURL: process.env.BASE_URL ,
+    baseURL: resolveBaseURL(),
     headless: false,
     screenshot: 'only-on-failure',
     video: 'on',
-    trace: 'on'
+    trace: 'on',
   },
 
   projects: [

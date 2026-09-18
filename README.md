@@ -163,3 +163,92 @@ Configure environment variables and credentials as GitHub Actions secrets or rep
 ## License
 
 This project currently uses the ISC license metadata declared in `package.json`.
+
+OOPs Concept:
+OOPs in the Base Page (easy explanation)
+The main OOP idea in this Playwright framework is the Page Object Model. The idea is simple:
+
+A page in the app is treated like an object
+Its actions and elements are grouped in a class
+Common logic is written once in a base class
+Each specific page gets its own class
+
+1) Class
+A class is like a blueprint.
+
+For example:
+
+BasePage is the blueprint for common page behavior
+LoginPage, InventoryPage, CartPage, etc. are page-specific blueprints
+So instead of writing the same code again and again, we create one common class.
+
+2) Inheritance
+This is one of the biggest OOP concepts here.
+
+The idea is:
+
+BasePage contains common methods like open page, wait for page load, click element, enter text
+LoginPage extends BasePage
+InventoryPage extends BasePage
+Checkout pages also extend BasePage
+So child pages inherit the common features without rewriting them.
+Example in plain words:
+
+All pages need to wait for page load
+All pages may need to click buttons
+So we write that logic once in BasePage
+Then all page classes reuse it
+
+3) Encapsulation
+Encapsulation means keeping things together in one place.
+
+In a page object:
+
+selectors are kept inside the page class
+page actions are kept inside methods
+the test does not need to know how the click is implemented
+So the test uses:
+
+loginPage.login()
+instead of writing raw browser steps again and again.
+
+This makes code cleaner and easier to maintain.
+
+
+4) Reusability
+This is the most useful part in automation.
+
+If many pages need:
+
+open URL
+wait for page to load
+verify page title
+click some common button
+Then we put those in BasePage once. That saves time and avoids duplication.
+
+
+5) Abstraction
+Abstraction means hiding complexity.
+
+The test writer does not need to know:
+
+which locator is used
+how the page waits
+what steps are inside the method
+The test just calls a simple method like:
+
+login()
+addToCart()
+checkout()
+This keeps test code simple and readable
+
+
+6) Polymorphism (conceptually)
+Even though this project may not use heavy override patterns, the same idea is present:
+
+Different pages may use the same method name
+But each page may implement it slightly differently
+Example:
+
+a common method called open() may behave slightly differently for login page vs inventory page
+same method name, different page-specific behavior
