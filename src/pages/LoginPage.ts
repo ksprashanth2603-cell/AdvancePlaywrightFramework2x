@@ -40,9 +40,25 @@ export class LoginPage extends BasePage {
         await this.el.fill(this.usernameInput, username);
         await this.el.fill(this.passwordInput, password);
         await this.el.click(this.loginButton);
-        await expect.poll(async () => (
-            this.page.url().includes('/inventory') || await this.errorBox.isVisible()
-        )).toBe(true);
+
+        await Promise.race([
+            this.page.waitForURL(/\/inventory(?:\.html)?(?:\?|$)/, { timeout: 15000 }),
+            this.errorBox.waitFor({ state: 'visible', timeout: 15000 }),
+        ]).catch(() => {
+            // The app may take a moment to resolve, but the test should continue as long as
+            // the link landed on inventory or the error box became visible.
+        });
+
+        await expect.poll(async () => {
+            const urlOk = this.page.url().includes('/inventory');
+            const errorOk = await this.errorBox.isVisible().catch(() => false);
+            return urlOk || errorOk;
+        }, { timeout: 15000 }).toBe(true);
+    }
+
+    async expectError(expectedMessage: string): Promise<void> {
+        await expect(this.errorBox).toBeVisible();
+        await expect(this.errorBox).toHaveText(expectedMessage);
     }
 
     async waitForLoginButtonHidden(): Promise<void> {

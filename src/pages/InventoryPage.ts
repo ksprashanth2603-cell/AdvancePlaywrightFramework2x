@@ -49,6 +49,11 @@ export class InventoryPage extends BasePage {
         await this.el.click(this.addBtn(id));
     }
 
+    async expectInCart(id: string): Promise<void> {
+        await expect(this.removeBtn(id)).toBeVisible();
+        await expect(this.cartBadge).toHaveText('1');
+    }
+
     async removeFromCart(id: string): Promise<void> {
         await this.el.click(this.removeBtn(id));
     }

@@ -235,6 +235,7 @@ class CustomTTAReporter implements Reporter {
 
         for (const attachment of result.attachments) {
             if (attachment.contentType === 'image/png') {
+                console.log(`[CustomReporter] PNG attachment: name=${attachment.name ?? 'unnamed'} size=${attachment.body?.length ?? attachment.path ? 'file' : 'unknown'}`);
                 const screenshotName = `screenshot_${this.testCounter}_${screenshots.length + 1}.png`;
                 const destPath = path.join('tta-report', 'screenshots', screenshotName);
                 const destDir = path.dirname(destPath);

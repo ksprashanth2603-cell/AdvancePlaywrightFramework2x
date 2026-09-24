@@ -4,6 +4,15 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+
+env:
+  STANDARD_USER: ${{ secrets.STANDARD_USER }}
+  TTA_SECRET: ${{ secrets.TTA_SECRET }}
+  CHECKOUT_ITEM_ID: ${{ secrets.CHECKOUT_ITEM_ID }}
+  CHECKOUT_FIRST_NAME: ${{ secrets.CHECKOUT_FIRST_NAME }}
+  CHECKOUT_LAST_NAME: ${{ secrets.CHECKOUT_LAST_NAME }}
+  CHECKOUT_POSTAL_CODE: ${{ secrets.CHECKOUT_POSTAL_CODE }}
+
 jobs:
   test:
     timeout-minutes: 60

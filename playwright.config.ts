@@ -1,7 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({ quiet: true, override: true });
+const ATTACH_SCREENSHOTS = process.env.ATTACH_SCREENSHOTS?.toLowerCase() === 'true';
 
 function resolveBaseURL(): string 
 {
@@ -44,7 +45,8 @@ export default defineConfig({
     timeout: 10_000
   },
 
-  fullyParallel: true,
+  fullyParallel: false,
+  workers: 1,
 
   retries: process.env.CI ? 2 : 0,
 
@@ -56,8 +58,9 @@ export default defineConfig({
 
   use: {
     baseURL: resolveBaseURL(),
-    headless: false,
-    screenshot: 'only-on-failure',
+    headless: !!process.env.CI,
+   // screenshot: 'only-on-failure',
+    screenshot: ATTACH_SCREENSHOTS ? 'only-on-failure' : 'on',
     video: 'on',
     trace: 'on',
   },

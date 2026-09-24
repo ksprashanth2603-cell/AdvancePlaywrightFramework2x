@@ -18,3 +18,216 @@
 2026-09-18 09:06:12 [info] [login.spec] Logging in as standard_user
 2026-09-18 09:06:12 [info] [LoginPage] loginAs standard_user
 2026-09-18 09:06:13 [info] [login.spec] Asserting login form is hidden after login
+2026-09-18 22:04:29 [info] [login.spec] Opening the TTACart login page
+2026-09-18 22:04:29 [info] [LoginPage] Open login pgae
+2026-09-18 22:04:30 [info] [login.spec] Logging in as standard_user
+2026-09-18 22:04:30 [info] [LoginPage] loginAs standard_user
+2026-09-18 22:04:31 [info] [login.spec] Asserting login form is hidden after login
+2026-09-18 23:13:05 [info] [login.spec] Opening the TTACart login page
+2026-09-18 23:13:05 [info] [LoginPage] Open login pgae
+2026-09-18 23:13:06 [info] [login.spec] Logging in as standard_user
+2026-09-18 23:13:06 [info] [LoginPage] loginAs standard_user
+2026-09-18 23:13:07 [info] [login.spec] Asserting login form is hidden after login
+2026-09-18 23:23:01 [info] [login.spec] Opening the TTACart login page
+2026-09-18 23:23:01 [info] [LoginPage] Open login pgae
+2026-09-18 23:23:01 [info] [login.spec] Logging in as standard_user
+2026-09-18 23:23:01 [info] [LoginPage] loginAs standard_user
+2026-09-18 23:23:02 [info] [login.spec] Asserting login form is hidden after login
+2026-09-18 23:23:31 [info] [login.spec] Opening the TTACart login page
+2026-09-18 23:23:31 [info] [LoginPage] Open login pgae
+2026-09-18 23:23:31 [info] [login.spec] Logging in as standard_user
+2026-09-18 23:23:31 [info] [LoginPage] loginAs standard_user
+2026-09-18 23:23:32 [info] [login.spec] Asserting login form is hidden after login
+2026-09-18 23:30:17 [info] [login.spec] Opening the TTACart login page
+2026-09-18 23:30:17 [info] [LoginPage] Open login pgae
+2026-09-18 23:30:18 [info] [login.spec] Logging in as standard_user
+2026-09-18 23:30:18 [info] [LoginPage] loginAs standard_user
+2026-09-18 23:30:19 [info] [login.spec] Asserting login form is hidden after login
+2026-09-18 23:58:21 [info] [login.spec] Opening the TTACart login page
+2026-09-18 23:58:21 [info] [LoginPage] Open login pgae
+2026-09-18 23:58:22 [info] [login.spec] Logging in as standard_user
+2026-09-18 23:58:22 [info] [LoginPage] loginAs standard_user
+2026-09-18 23:58:22 [info] [login.spec] Asserting login form is hidden after login
+2026-09-21 22:57:18 [info] [e2e-checkout] Step 1: logging in as PRASHANTH
+2026-09-21 22:57:18 [info] [LoginPage] Open login pgae
+2026-09-21 22:57:19 [info] [LoginPage] loginAs PRASHANTH
+2026-09-21 22:57:19 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 22:59:15 [info] [e2e-checkout] Step 1: logging in as PRASHANTH
+2026-09-21 22:59:15 [info] [LoginPage] Open login pgae
+2026-09-21 22:59:16 [info] [LoginPage] loginAs PRASHANTH
+2026-09-21 22:59:16 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:02:14 [info] [e2e-checkout] Step 1: logging in as PRASHANTH
+2026-09-21 23:02:14 [info] [LoginPage] Open login pgae
+2026-09-21 23:02:15 [info] [LoginPage] loginAs PRASHANTH
+2026-09-21 23:02:15 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:03:00 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:03:00 [info] [LoginPage] Open login pgae
+2026-09-21 23:03:00 [info] [LoginPage] loginAs standard_user
+2026-09-21 23:03:01 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:03:01 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-21 23:03:01 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-21 23:03:02 [info] [e2e-checkout] Step 5a: filling guest details for Essie Lindgren
+2026-09-21 23:03:02 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-21 23:03:03 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-21 23:03:46 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:03:46 [info] [LoginPage] Open login pgae
+2026-09-21 23:03:47 [info] [LoginPage] loginAs standard_user
+2026-09-21 23:03:48 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:03:48 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-21 23:03:48 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-21 23:03:48 [info] [e2e-checkout] Step 5a: filling guest details for Garland Bauch
+2026-09-21 23:03:49 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-21 23:03:49 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-21 23:06:50 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:06:50 [info] [LoginPage] Open login pgae
+2026-09-21 23:06:50 [info] [LoginPage] loginAs standard_user
+2026-09-21 23:06:51 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:06:51 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-21 23:06:51 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-21 23:06:51 [info] [e2e-checkout] Step 5a: filling guest details for Linnie Senger
+2026-09-21 23:06:52 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-21 23:06:52 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-21 23:15:33 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:15:34 [info] [LoginPage] Open login pgae
+2026-09-21 23:15:35 [info] [LoginPage] loginAs standard_user
+2026-09-21 23:15:36 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:15:36 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-21 23:15:36 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-21 23:15:37 [info] [e2e-checkout] Step 5a: filling guest details for Maxine Mante
+2026-09-21 23:15:37 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-21 23:15:38 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-21 23:19:31 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:19:31 [info] [LoginPage] Open login pgae
+2026-09-21 23:19:32 [info] [LoginPage] loginAs standard_user
+2026-09-21 23:19:32 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:19:32 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-21 23:19:33 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-21 23:19:33 [info] [e2e-checkout] Step 5a: filling guest details for Linnie Greenholt
+2026-09-21 23:19:34 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-21 23:19:34 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-21 23:21:50 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:21:50 [info] [LoginPage] Open login pgae
+2026-09-21 23:21:51 [info] [LoginPage] loginAs standard_user
+2026-09-21 23:21:52 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:21:53 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-21 23:21:54 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-21 23:23:09 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:23:09 [info] [LoginPage] Open login pgae
+2026-09-21 23:23:10 [info] [LoginPage] loginAs standard_user
+2026-09-21 23:23:11 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:23:11 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-21 23:23:11 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-21 23:23:12 [info] [e2e-checkout] Step 5a: filling guest details for Austen Bayer
+2026-09-21 23:23:13 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-21 23:23:13 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-21 23:24:21 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:24:21 [info] [LoginPage] Open login pgae
+2026-09-21 23:26:54 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:26:54 [info] [LoginPage] Open login pgae
+2026-09-21 23:26:56 [info] [LoginPage] loginAs standard_user
+2026-09-21 23:29:44 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:29:44 [info] [LoginPage] Open login pgae
+2026-09-21 23:29:45 [info] [LoginPage] loginAs standard_user
+2026-09-21 23:29:46 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:29:46 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-21 23:29:46 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-21 23:29:47 [info] [e2e-checkout] Step 5a: filling guest details for Reta O'Conner
+2026-09-21 23:29:48 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-21 23:29:48 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-21 23:31:45 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:31:45 [info] [LoginPage] Open login pgae
+2026-09-21 23:31:46 [info] [LoginPage] loginAs standard_user
+2026-09-21 23:31:46 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:31:46 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-21 23:31:47 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-21 23:31:47 [info] [e2e-checkout] Step 5a: filling guest details for Cristobal Casper
+2026-09-21 23:31:48 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-21 23:31:48 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-21 23:33:06 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:33:06 [info] [LoginPage] Open login pgae
+2026-09-21 23:33:07 [info] [LoginPage] loginAs standard_user
+2026-09-21 23:33:08 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:33:08 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-21 23:33:08 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-21 23:33:08 [info] [e2e-checkout] Step 5a: filling guest details for Benjamin Hand
+2026-09-21 23:33:09 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-21 23:33:10 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-21 23:44:18 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-21 23:44:18 [info] [LoginPage] Open login pgae
+2026-09-21 23:44:19 [info] [LoginPage] loginAs standard_user
+2026-09-21 23:44:19 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-21 23:44:20 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-21 23:44:20 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-21 23:44:20 [info] [e2e-checkout] Step 5a: filling guest details for Willard Lebsack
+2026-09-21 23:44:21 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-21 23:44:21 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-24 21:37:39 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-24 21:37:39 [info] [LoginPage] Open login pgae
+2026-09-24 21:37:40 [info] [LoginPage] loginAs standard_user
+2026-09-24 21:37:41 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-24 21:37:42 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-24 21:37:42 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-24 21:37:42 [info] [e2e-checkout] Step 5a: filling guest details for Winifred Ledner
+2026-09-24 21:37:44 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-24 21:37:44 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-24 22:35:04 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-24 22:35:04 [info] [LoginPage] Open login pgae
+2026-09-24 22:35:05 [info] [LoginPage] loginAs standard_user
+2026-09-24 22:35:06 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-24 22:35:06 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-24 22:35:06 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-24 22:35:07 [info] [e2e-checkout] Step 5a: filling guest details for Pink Hettinger
+2026-09-24 22:35:08 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-24 22:35:08 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-24 22:35:10 [info] [login.spec] Opening the TTACart login page
+2026-09-24 22:35:10 [info] [LoginPage] Open login pgae
+2026-09-24 22:35:11 [info] [login.spec] Logging in as standard_user
+2026-09-24 22:35:11 [info] [LoginPage] loginAs standard_user
+2026-09-24 22:35:11 [info] [login.spec] Asserting login form is hidden after login
+2026-09-24 22:38:54 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-09-24 22:38:54 [info] [LoginPage] Open login pgae
+2026-09-24 22:38:55 [info] [LoginPage] loginAs standard_user
+2026-09-24 22:38:56 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-09-24 22:38:56 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-24 22:38:56 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-09-24 22:38:57 [info] [e2e-checkout] Step 5a: filling guest details for Sam Upton
+2026-09-24 22:38:58 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-09-24 22:38:59 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-09-24 23:04:55 [info] [LoginPage] Open login pgae
+2026-09-24 23:04:56 [info] [LoginPage] loginAs locked_out_user
+2026-09-24 23:05:00 [info] [LoginPage] Open login pgae
+2026-09-24 23:05:01 [info] [LoginPage] loginAs standard_user
+2026-09-24 23:06:10 [info] [LoginPage] Open login pgae
+2026-09-24 23:06:11 [info] [LoginPage] loginAs locked_out_user
+2026-09-24 23:06:15 [info] [LoginPage] Open login pgae
+2026-09-24 23:06:16 [info] [LoginPage] loginAs standard_user
+2026-09-24 23:06:55 [info] [LoginPage] Open login pgae
+2026-09-24 23:06:56 [info] [LoginPage] loginAs locked_out_user
+2026-09-24 23:06:56 [info] [e2e-checkout-new-fixture] Invalid login fixture verified for locked_out_user
+2026-09-24 23:06:57 [info] [LoginPage] Open login pgae
+2026-09-24 23:06:58 [info] [LoginPage] loginAs standard_user
+2026-09-24 23:06:59 [info] [e2e-checkout-new-fixture] Fixture selected item "test-allthethings-tshirt-red"
+2026-09-24 23:23:28 [info] [LoginPage] Open login pgae
+2026-09-24 23:23:30 [info] [LoginPage] loginAs standard_user
+2026-09-24 23:24:09 [info] [LoginPage] Open login pgae
+2026-09-24 23:24:10 [info] [LoginPage] loginAs standard_user
+2026-09-24 23:32:52 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-09-24 23:32:52 [info] [LoginPage] Open login pgae
+2026-09-24 23:32:53 [info] [LoginPage] loginAs standard_user
+2026-09-24 23:32:54 [info] [e2e-checkout-env] Env config: item="test-allthethings-tshirt-red", customer="John Doe", postalCode="560001"
+2026-09-24 23:32:54 [info] [e2e-checkout-env] Step 2: navigating to the inventory page
+2026-09-24 23:32:54 [info] [e2e-checkout-env] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-24 23:32:54 [info] [e2e-checkout-env] Step 4: opening the cart and verifying one row
+2026-09-24 23:32:55 [info] [e2e-checkout-env] Step 5a: filling guest details for John Doe
+2026-09-24 23:32:56 [info] [e2e-checkout-env] Step 5b: reviewing the overview and finishing the order
+2026-09-24 23:32:57 [info] [e2e-checkout-env] Step 6: asserting the order is complete
+2026-09-24 23:35:29 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-09-24 23:35:29 [info] [LoginPage] Open login pgae
+2026-09-24 23:35:30 [info] [LoginPage] loginAs standard_user
+2026-09-24 23:35:31 [info] [e2e-checkout-env] Env config: item="test-allthethings-tshirt-red", customer="John Doe", postalCode="560001"
+2026-09-24 23:35:31 [info] [e2e-checkout-env] Step 2: navigating to the inventory page
+2026-09-24 23:35:31 [info] [e2e-checkout-env] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-09-24 23:35:31 [info] [e2e-checkout-env] Step 4: opening the cart and verifying one row
+2026-09-24 23:35:32 [info] [e2e-checkout-env] Step 5a: filling guest details for John Doe
+2026-09-24 23:35:33 [info] [e2e-checkout-env] Step 5b: reviewing the overview and finishing the order
+2026-09-24 23:35:34 [info] [e2e-checkout-env] Step 6: asserting the order is complete
