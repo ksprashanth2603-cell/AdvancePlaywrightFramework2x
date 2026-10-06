@@ -33,6 +33,12 @@ interface StepData {
     videoEndTime?: number;
 }
 
+interface TestAttachment {
+    name: string;
+    path: string;
+    contentType: string;
+}
+
 interface TestData {
     id: string;
     title: string;
@@ -44,6 +50,7 @@ interface TestData {
     status: 'passed' | 'failed' | 'skipped' | 'timedOut';
     retry: number;
     screenshots: { name: string; path: string }[];
+    attachments: TestAttachment[];
     steps: StepData[];
     logs: string[];
     video?: string;
@@ -141,6 +148,7 @@ class CustomTTAReporter implements Reporter {
             status: 'passed',
             retry: 0,
             screenshots: [],
+            attachments: [],
             steps: [],
             logs: [],
             tags: test.tags || [],
@@ -229,11 +237,31 @@ class CustomTTAReporter implements Reporter {
         this.associateLogsWithSteps(test, result, currentTestSteps, testLogs);
 
         const screenshots: { name: string; path: string }[] = [];
+        const attachments: TestAttachment[] = [];
         const stepScreenshots: Map<string, string> = new Map();
         let videoPath: string | undefined;
         let tracePath: string | undefined;
 
         for (const attachment of result.attachments) {
+            if (attachment.contentType === 'application/json' && attachment.body !== undefined) {
+                const attachmentName = `${this.sanitizeFileName(attachment.name || 'api-response')}.json`;
+                const destPath = path.join('tta-report', 'attachments', `${this.testCounter}_${attachmentName}`);
+                const destDir = path.dirname(destPath);
+                if (!fs.existsSync(destDir)) {
+                    fs.mkdirSync(destDir, { recursive: true });
+                }
+
+                const body = Buffer.isBuffer(attachment.body)
+                    ? attachment.body
+                    : Buffer.from(String(attachment.body));
+                fs.writeFileSync(destPath, body);
+                attachments.push({
+                    name: attachment.name || 'API response',
+                    path: destPath.replace(/\\/g, '/'),
+                    contentType: attachment.contentType,
+                });
+            }
+
             if (attachment.contentType === 'image/png') {
                 console.log(`[CustomReporter] PNG attachment: name=${attachment.name ?? 'unnamed'} size=${attachment.body?.length ?? attachment.path ? 'file' : 'unknown'}`);
                 const screenshotName = `screenshot_${this.testCounter}_${screenshots.length + 1}.png`;
@@ -337,6 +365,7 @@ class CustomTTAReporter implements Reporter {
             status: status,
             retry: result.retry,
             screenshots: screenshots,
+            attachments: attachments,
             steps: [...currentTestSteps],
             logs: testLogs,
             video: videoPath,
@@ -915,6 +944,32 @@ class CustomTTAReporter implements Reporter {
             </div>`;
         }
 
+        if (test.attachments.length > 0) {
+            html += `
+            <div class="detail-section api-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="section-arrow">▼</span> API Responses (${test.attachments.length})
+                </div>
+                <div class="section-content">
+                    <div class="attachments-list">`;
+
+            for (const attachment of test.attachments) {
+                html += `
+                    <div class="attachment-item">
+                        <div class="attachment-header">
+                            <span>📄 ${this.escapeHtml(attachment.name)}</span>
+                            <a href="${attachment.path}" download class="attachment-download">Download JSON</a>
+                        </div>
+                        <pre class="attachment-content">${this.escapeHtml(fs.readFileSync(path.join(process.cwd(), attachment.path), 'utf-8'))}</pre>
+                    </div>`;
+            }
+
+            html += `
+                    </div>
+                </div>
+            </div>`;
+        }
+
         if (test.steps.length > 0) {
             html += `
             <div class="detail-section steps-section">
@@ -1055,6 +1110,16 @@ class CustomTTAReporter implements Reporter {
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;');
+    }
+
+    private sanitizeFileName(name: string): string {
+        return name
+            .trim()
+            .replace(/\\/g, '-')
+            .replace(/[<>:"/|?*]/g, '-')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '') || 'api-response';
     }
 
     private getStyles(): string {
@@ -1493,6 +1558,42 @@ class CustomTTAReporter implements Reporter {
             border-bottom: 1px solid var(--gray-100);
         }
         .detail-section:last-child { border-bottom: none; }
+        .attachments-list {
+            display: grid;
+            gap: 16px;
+        }
+        .attachment-item {
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: var(--gray-50);
+        }
+        .attachment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            background: var(--gray-100);
+            font-weight: 600;
+        }
+        .attachment-download {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .attachment-content {
+            margin: 0;
+            max-height: 320px;
+            overflow: auto;
+            padding: 14px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-family: 'JetBrains Mono', Consolas, monospace;
+            font-size: 12px;
+            background: #111827;
+            color: #e5e7eb;
+        }
         .section-header {
             padding: 16px 20px;
             background: var(--gray-50);
