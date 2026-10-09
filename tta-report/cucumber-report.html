@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TTA Automation Report</title>
+    <style>
+        :root { --primary: #059669; --primary-dark: #047857; --primary-bg: #ecfdf5; --success: #22c55e; --danger: #ef4444; --warning: #f59e0b; --gray-50: #f8fafc; --gray-200: #e2e8f0; --gray-500: #64748b; --gray-700: #334155; --shadow: 0 4px 6px -1px rgb(0 0 0 / .12); }
+        * { box-sizing: border-box; }
+        body { margin: 0; font-family: Inter, Segoe UI, Arial, sans-serif; background: linear-gradient(135deg, #f1f5f9 0%, #ecfdf5 100%); color: var(--gray-700); }
+        .header { position: relative; overflow: hidden; padding: 36px 20px; text-align: center; color: #fff; background: linear-gradient(135deg, var(--primary) 0%, #0d9488 50%, var(--primary-dark) 100%); }
+        .header::before { content: ''; position: absolute; inset: -50% -20%; background: radial-gradient(circle, rgba(255,255,255,.18) 0%, transparent 60%); animation: pulse 15s ease-in-out infinite; }
+        .header h1, .header p { position: relative; margin: 0; }
+        .header h1 { font-size: 32px; }
+        .header p { margin-top: 8px; color: rgba(255,255,255,.9); }
+        @keyframes pulse { 0%,100% { transform: scale(1); opacity: .5; } 50% { transform: scale(1.1); opacity: .3; } }
+        .container { max-width: 1400px; margin: 0 auto; padding: 24px 20px 40px; }
+        .stats-dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; margin: -25px 0 20px; }
+        .stat-card { padding: 18px; border-radius: 12px; background: #fff; box-shadow: var(--shadow); text-align: center; }
+        .stat-value { font-size: 28px; font-weight: 700; color: var(--gray-700); }
+        .stat-card.passed .stat-value { color: var(--success); }
+        .stat-card.failed .stat-value { color: var(--danger); }
+        .stat-card.skipped .stat-value { color: var(--gray-500); }
+        .meta-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 20px; padding: 16px; border-radius: 12px; background: rgba(255,255,255,.9); box-shadow: var(--shadow); }
+        .meta-item { display: flex; flex-direction: column; gap: 2px; }
+        .meta-label { font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--gray-500); }
+        .filters { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; padding: 14px 16px; border-radius: 10px; background: #fff; box-shadow: var(--shadow); }
+        .filter-group { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .filter-group strong { margin-right: 4px; }
+        .filter-group label { display: inline-flex; align-items: center; gap: 4px; }
+        .table-wrap { overflow-x: auto; background: #fff; border-radius: 12px; box-shadow: var(--shadow); }
+        table { width: 100%; border-collapse: collapse; min-width: 1100px; }
+        th, td { padding: 12px 14px; border-bottom: 1px solid var(--gray-200); text-align: left; vertical-align: top; }
+        th { background: #ecfdf5; color: var(--primary-dark); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+        .test-row.failed td { background: #fef2f2; }
+        .test-row.skipped td { background: #f8fafc; }
+        .status-badge { display: inline-block; padding: 4px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; text-transform: capitalize; }
+        .status-badge.passed { background: #dcfce7; color: #166534; }
+        .status-badge.failed { background: #fee2e2; color: #991b1b; }
+        .status-badge.skipped { background: #e2e8f0; color: #475569; }
+        .status-badge.undefined { background: #fef3c7; color: #92400e; }
+        .tag { display: inline-block; margin: 2px; padding: 3px 7px; border-radius: 999px; background: #f1f5f9; color: var(--gray-600); font-size: 10px; }
+        .test-name-link { border: 0; padding: 0; background: none; color: var(--primary-dark); font: inherit; font-weight: 600; cursor: pointer; text-align: left; }
+        .detail-row td { padding: 0; }
+        .detail-panel { padding: 18px; background: #f8fafc; border-left: 4px solid #10b981; }
+        .detail-header { font-weight: 700; margin-bottom: 12px; }
+        .step-list { display: grid; gap: 10px; }
+        .step-item { border: 1px solid var(--gray-200); border-radius: 8px; background: #fff; padding: 10px 12px; }
+        .step-item.failed { border-left: 4px solid var(--danger); }
+        .step-item.passed { border-left: 4px solid var(--success); }
+        .step-item.skipped { border-left: 4px solid var(--gray-500); }
+        .step-line { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+        .step-keyword { font-weight: 700; color: var(--primary-dark); }
+        .step-text { flex: 1; min-width: 180px; }
+        .step-duration { color: var(--gray-500); font-size: 12px; }
+        .step-status { font-size: 10px; font-weight: 700; text-transform: uppercase; }
+        .step-status.passed { color: #166534; }
+        .step-status.failed { color: #991b1b; }
+        .step-status.skipped { color: #475569; }
+        .step-error { margin: 10px 0 0; white-space: pre-wrap; color: #991b1b; background: #fef2f2; padding: 10px; border-radius: 6px; overflow-x: auto; }
+        @media (max-width: 700px) { .container { padding: 16px; } .header h1 { font-size: 24px; } }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎭 Custom Automation Report</h1>
+        <p>Playwright Framework • Cucumber Results</p>
+    </div>
+    <div class="container">
+        <div class="stats-dashboard">
+            <div class="stat-card"><div class="stat-value">9</div><div>Total Scenarios</div></div>
+            <div class="stat-card passed"><div class="stat-value">9</div><div>Passed</div></div>
+            <div class="stat-card failed"><div class="stat-value">0</div><div>Failed</div></div>
+            <div class="stat-card skipped"><div class="stat-value">0</div><div>Skipped</div></div>
+            <div class="stat-card"><div class="stat-value">100.0%</div><div>Pass Rate</div></div>
+            <div class="stat-card"><div class="stat-value">403834m 46s</div><div>Duration</div></div>
+        </div>
+        <div class="meta-section">
+            <div class="meta-item"><span class="meta-label">Environment</span><span>🌐 UAT</span></div>
+            <div class="meta-item"><span class="meta-label">Browser</span><span>🌍 Chromium</span></div>
+            <div class="meta-item"><span class="meta-label">Platform</span><span>Windows</span></div>
+            <div class="meta-item"><span class="meta-label">Run ID</span><span>20261008_025517</span></div>
+            <div class="meta-item"><span class="meta-label">Generated</span><span>Oct 08, 2026, 02:55:17</span></div>
+        </div>
+        <div class="filters">
+            <div class="filter-group">
+                <strong>📊 Status:</strong>
+                <label><input type="checkbox" class="status-filter" value="passed" checked> Passed</label>
+                <label><input type="checkbox" class="status-filter" value="failed" checked> Failed</label>
+                <label><input type="checkbox" class="status-filter" value="skipped" checked> Skipped</label>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>S.No</th><th>Feature</th><th>Scenario</th><th>Tags</th><th>Duration</th><th>Status</th><th>Error</th></tr></thead>
+                <tbody>
+        <tr class="test-row passed" data-status="passed">
+            <td class="col-sno">1</td>
+            <td class="col-feature">Adding products from a Data Table (Level 2)</td>
+            <td class="col-scenario"><button class="test-name-link" type="button" onclick="toggleScenarioDetails('0-Add three products to the cart in one step')">Add three products to the cart in one step</button></td>
+            <td class="col-tags"><span class="tag">@level2</span> <span class="tag">@datatable</span></td>
+            <td class="col-duration">40264m 25s</td>
+            <td class="col-status"><span class="status-badge passed">passed</span></td>
+            <td class="col-error">—</td>
+        </tr>
+        <tr class="detail-row" id="detail-0-Add three products to the cart in one step" style="display: none;">
+            <td colspan="7">
+                <div class="detail-panel">
+                    <div class="detail-header">Adding products from a Data Table (Level 2) › Add three products to the cart in one step</div>
+                    <div class="step-list">
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Before</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">6436m 11s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Given </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">22453m 4s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">And </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">1358m 56s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">When </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">2198m 34s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Then </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">6533m 49s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">After</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">1283m 49s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div></div>
+                </div>
+            </td>
+        </tr>
+        <tr class="test-row passed" data-status="passed">
+            <td class="col-sno">2</td>
+            <td class="col-feature">End-to-end checkout, data from an external JSON file (Level 2)</td>
+            <td class="col-scenario"><button class="test-name-link" type="button" onclick="toggleScenarioDetails('1-alice completes a full checkout')">alice completes a full checkout</button></td>
+            <td class="col-tags"><span class="tag">@level2</span> <span class="tag">@external</span> <span class="tag">@e2e</span></td>
+            <td class="col-duration">62649m 47s</td>
+            <td class="col-status"><span class="status-badge passed">passed</span></td>
+            <td class="col-error">—</td>
+        </tr>
+        <tr class="detail-row" id="detail-1-alice completes a full checkout" style="display: none;">
+            <td colspan="7">
+                <div class="detail-panel">
+                    <div class="detail-header">End-to-end checkout, data from an external JSON file (Level 2) › alice completes a full checkout</div>
+                    <div class="step-list">
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Before</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">4895m 27s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Given </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">23568m 28s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">When </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">910m 48s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">And </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">30871m 32s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Then </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">730m 23s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">After</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">1673m 7s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div></div>
+                </div>
+            </td>
+        </tr>
+        <tr class="test-row passed" data-status="passed">
+            <td class="col-sno">3</td>
+            <td class="col-feature">End-to-end checkout, data from an external JSON file (Level 2)</td>
+            <td class="col-scenario"><button class="test-name-link" type="button" onclick="toggleScenarioDetails('1-bob completes a full checkout')">bob completes a full checkout</button></td>
+            <td class="col-tags"><span class="tag">@level2</span> <span class="tag">@external</span> <span class="tag">@e2e</span></td>
+            <td class="col-duration">57206m 8s</td>
+            <td class="col-status"><span class="status-badge passed">passed</span></td>
+            <td class="col-error">—</td>
+        </tr>
+        <tr class="detail-row" id="detail-1-bob completes a full checkout" style="display: none;">
+            <td colspan="7">
+                <div class="detail-panel">
+                    <div class="detail-header">End-to-end checkout, data from an external JSON file (Level 2) › bob completes a full checkout</div>
+                    <div class="step-list">
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Before</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">3791m 35s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Given </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">22332m 37s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">When </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">492m 0s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">And </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">28892m 6s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Then </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">644m 33s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">After</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">1053m 15s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div></div>
+                </div>
+            </td>
+        </tr>
+        <tr class="test-row passed" data-status="passed">
+            <td class="col-sno">4</td>
+            <td class="col-feature">End-to-end checkout, data from an external JSON file (Level 2)</td>
+            <td class="col-scenario"><button class="test-name-link" type="button" onclick="toggleScenarioDetails('1-carol completes a full checkout')">carol completes a full checkout</button></td>
+            <td class="col-tags"><span class="tag">@level2</span> <span class="tag">@external</span> <span class="tag">@e2e</span></td>
+            <td class="col-duration">52941m 28s</td>
+            <td class="col-status"><span class="status-badge passed">passed</span></td>
+            <td class="col-error">—</td>
+        </tr>
+        <tr class="detail-row" id="detail-1-carol completes a full checkout" style="display: none;">
+            <td colspan="7">
+                <div class="detail-panel">
+                    <div class="detail-header">End-to-end checkout, data from an external JSON file (Level 2) › carol completes a full checkout</div>
+                    <div class="step-list">
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Before</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">4040m 40s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Given </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">19723m 59s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">When </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">474m 35s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">And </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">26864m 57s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Then </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">640m 22s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">After</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">1196m 51s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div></div>
+                </div>
+            </td>
+        </tr>
+        <tr class="test-row passed" data-status="passed">
+            <td class="col-sno">5</td>
+            <td class="col-feature">TTACart login outcomes (Level 2 — Scenario Outline)</td>
+            <td class="col-scenario"><button class="test-name-link" type="button" onclick="toggleScenarioDetails('2-standard_user logging in ends on the products')">standard_user logging in ends on the products</button></td>
+            <td class="col-tags"><span class="tag">@level2</span> <span class="tag">@outline</span></td>
+            <td class="col-duration">26719m 18s</td>
+            <td class="col-status"><span class="status-badge passed">passed</span></td>
+            <td class="col-error">—</td>
+        </tr>
+        <tr class="detail-row" id="detail-2-standard_user logging in ends on the products" style="display: none;">
+            <td colspan="7">
+                <div class="detail-panel">
+                    <div class="detail-header">TTACart login outcomes (Level 2 — Scenario Outline) › standard_user logging in ends on the products</div>
+                    <div class="step-list">
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Before</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">4209m 7s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Given </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">12985m 50s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">When </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">8292m 34s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Then </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">300m 58s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">After</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">930m 46s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div></div>
+                </div>
+            </td>
+        </tr>
+        <tr class="test-row passed" data-status="passed">
+            <td class="col-sno">6</td>
+            <td class="col-feature">TTACart login outcomes (Level 2 — Scenario Outline)</td>
+            <td class="col-scenario"><button class="test-name-link" type="button" onclick="toggleScenarioDetails('2-problem_user logging in ends on the products')">problem_user logging in ends on the products</button></td>
+            <td class="col-tags"><span class="tag">@level2</span> <span class="tag">@outline</span></td>
+            <td class="col-duration">27256m 40s</td>
+            <td class="col-status"><span class="status-badge passed">passed</span></td>
+            <td class="col-error">—</td>
+        </tr>
+        <tr class="detail-row" id="detail-2-problem_user logging in ends on the products" style="display: none;">
+            <td colspan="7">
+                <div class="detail-panel">
+                    <div class="detail-header">TTACart login outcomes (Level 2 — Scenario Outline) › problem_user logging in ends on the products</div>
+                    <div class="step-list">
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Before</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">4282m 31s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Given </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">13243m 55s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">When </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">8302m 18s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Then </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">252m 8s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">After</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">1175m 45s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div></div>
+                </div>
+            </td>
+        </tr>
+        <tr class="test-row passed" data-status="passed">
+            <td class="col-sno">7</td>
+            <td class="col-feature">TTACart login outcomes (Level 2 — Scenario Outline)</td>
+            <td class="col-scenario"><button class="test-name-link" type="button" onclick="toggleScenarioDetails('2-performance_glitch_user logging in ends on the products')">performance_glitch_user logging in ends on the products</button></td>
+            <td class="col-tags"><span class="tag">@level2</span> <span class="tag">@outline</span></td>
+            <td class="col-duration">91740m 45s</td>
+            <td class="col-status"><span class="status-badge passed">passed</span></td>
+            <td class="col-error">—</td>
+        </tr>
+        <tr class="detail-row" id="detail-2-performance_glitch_user logging in ends on the products" style="display: none;">
+            <td colspan="7">
+                <div class="detail-panel">
+                    <div class="detail-header">TTACart login outcomes (Level 2 — Scenario Outline) › performance_glitch_user logging in ends on the products</div>
+                    <div class="step-list">
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Before</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">3897m 23s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Given </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">12098m 27s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">When </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">74630m 12s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Then </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">133m 54s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">After</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">980m 47s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div></div>
+                </div>
+            </td>
+        </tr>
+        <tr class="test-row passed" data-status="passed">
+            <td class="col-sno">8</td>
+            <td class="col-feature">TTACart login outcomes (Level 2 — Scenario Outline)</td>
+            <td class="col-scenario"><button class="test-name-link" type="button" onclick="toggleScenarioDetails('2-locked_out_user logging in ends on the error')">locked_out_user logging in ends on the error</button></td>
+            <td class="col-tags"><span class="tag">@level2</span> <span class="tag">@outline</span></td>
+            <td class="col-duration">21169m 27s</td>
+            <td class="col-status"><span class="status-badge passed">passed</span></td>
+            <td class="col-error">—</td>
+        </tr>
+        <tr class="detail-row" id="detail-2-locked_out_user logging in ends on the error" style="display: none;">
+            <td colspan="7">
+                <div class="detail-panel">
+                    <div class="detail-header">TTACart login outcomes (Level 2 — Scenario Outline) › locked_out_user logging in ends on the error</div>
+                    <div class="step-list">
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Before</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">3976m 11s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Given </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">14149m 51s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">When </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">1878m 47s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Then </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">52m 9s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">After</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">1112m 27s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div></div>
+                </div>
+            </td>
+        </tr>
+        <tr class="test-row passed" data-status="passed">
+            <td class="col-sno">9</td>
+            <td class="col-feature">TTACart login outcomes (Level 2 — Scenario Outline)</td>
+            <td class="col-scenario"><button class="test-name-link" type="button" onclick="toggleScenarioDetails('2-standard_user logging in ends on the error')">standard_user logging in ends on the error</button></td>
+            <td class="col-tags"><span class="tag">@level2</span> <span class="tag">@outline</span></td>
+            <td class="col-duration">23886m 44s</td>
+            <td class="col-status"><span class="status-badge passed">passed</span></td>
+            <td class="col-error">—</td>
+        </tr>
+        <tr class="detail-row" id="detail-2-standard_user logging in ends on the error" style="display: none;">
+            <td colspan="7">
+                <div class="detail-panel">
+                    <div class="detail-header">TTACart login outcomes (Level 2 — Scenario Outline) › standard_user logging in ends on the error</div>
+                    <div class="step-list">
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Before</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">4723m 26s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Given </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">15753m 46s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">When </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">2239m 37s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">Then </span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">141m 43s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div>
+                        <div class="step-item passed">
+                            <div class="step-line">
+                                <span class="step-keyword">After</span>
+                                <span class="step-text"></span>
+                                <span class="step-duration">1028m 9s</span>
+                                <span class="step-status passed">passed</span>
+                            </div>
+                            
+                        </div></div>
+                </div>
+            </td>
+        </tr></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        const statusFilters = document.querySelectorAll('.status-filter');
+        function filterRows() {
+            const selected = new Set([...statusFilters].filter(input => input.checked).map(input => input.value));
+            document.querySelectorAll('.test-row').forEach(row => {
+                row.style.display = selected.has(row.dataset.status) ? '' : 'none';
+                const detail = document.getElementById('detail-' + row.querySelector('.test-name-link').onclick.toString().match(/toggleScenarioDetails\('([^']+)'\)/)?.[1]);
+                if (detail) detail.style.display = selected.has(row.dataset.status) ? 'none' : 'none';
+            });
+        }
+        statusFilters.forEach(input => input.addEventListener('change', filterRows));
+        function toggleScenarioDetails(id) {
+            const detail = document.getElementById('detail-' + id);
+            detail.style.display = detail.style.display === 'none' ? '' : 'none';
+        }
+    </script>
+</body>
+</html>

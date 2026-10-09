@@ -1,8 +1,9 @@
-import { test, expect} from '@playwright/test';
-// https://restful-booker.herokuapp.com/ping
+import { test, expect } from '@playwright/test';
 
-test('ping request - GET', async({ request})=>{
-        const responseData = await request.get("/ping");
-        console.log(responseData);
-        expect(responseData.status()).toBe(201);
+const apiBaseUrl = process.env.API_BASE_URL || 'https://restful-booker.herokuapp.com';
+
+test('ping request - GET', async ({ request }) => {
+    const responseData = await request.get(`${apiBaseUrl}/ping`);
+    expect(responseData.ok()).toBeTruthy();
+    expect(responseData.status()).toBe(201);
 });

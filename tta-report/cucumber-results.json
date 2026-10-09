@@ -1,0 +1,830 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "adding-products-from-a-data-table-(level-2);add-three-products-to-the-cart-in-one-step",
+        "keyword": "Scenario",
+        "line": 8,
+        "name": "Add three products to the cart in one step",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 386171599
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1347184800
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am logged in as a standard user",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:15"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 81536100
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "I am on the products page",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 131914300
+            },
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "productId"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "tta-practice-backpack"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "tta-bike-light"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "test-allthethings-tshirt-red"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "When ",
+            "line": 9,
+            "name": "I add the following products to the cart:",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:35"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 392029500
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "the cart should contain 3 products",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:44"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 77029099
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@level2",
+            "line": 1
+          },
+          {
+            "name": "@datatable",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "adding-products-from-a-data-table-(level-2)",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "Adding products from a Data Table (Level 2)",
+    "tags": [
+      {
+        "name": "@level2",
+        "line": 1
+      },
+      {
+        "name": "@datatable",
+        "line": 1
+      }
+    ],
+    "uri": "src\\Cucumber\\level-02-data-driven\\features\\cart-datatable.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "end-to-end-checkout,-data-from-an-external-json-file-(level-2);alice-completes-a-full-checkout",
+        "keyword": "Scenario Outline",
+        "line": 14,
+        "name": "alice completes a full checkout",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 293727400
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1414108500
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am logged in as a standard user",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:15"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 54648200
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I add product \"test-allthethings-tshirt-red\" to the cart",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:50"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1852292700
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "I check out as the \"alice\" customer",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:54"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 43823300
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "the order should be confirmed",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:67"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 100387700
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@level2",
+            "line": 1
+          },
+          {
+            "name": "@external",
+            "line": 1
+          },
+          {
+            "name": "@e2e",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "end-to-end-checkout,-data-from-an-external-json-file-(level-2);bob-completes-a-full-checkout",
+        "keyword": "Scenario Outline",
+        "line": 15,
+        "name": "bob completes a full checkout",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 227495899
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1339957700
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am logged in as a standard user",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:15"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 29520000
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I add product \"test-allthethings-tshirt-red\" to the cart",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:50"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1733526200
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "I check out as the \"bob\" customer",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:54"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 38673400
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "the order should be confirmed",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:67"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 63195100
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@level2",
+            "line": 1
+          },
+          {
+            "name": "@external",
+            "line": 1
+          },
+          {
+            "name": "@e2e",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "end-to-end-checkout,-data-from-an-external-json-file-(level-2);carol-completes-a-full-checkout",
+        "keyword": "Scenario Outline",
+        "line": 16,
+        "name": "carol completes a full checkout",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 242440799
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1183439599
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am logged in as a standard user",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:15"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 28475500
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I add product \"test-allthethings-tshirt-red\" to the cart",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:50"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 1611897899
+            },
+            "arguments": [],
+            "keyword": "And ",
+            "line": 9,
+            "name": "I check out as the \"carol\" customer",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:54"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 38422899
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 10,
+            "name": "the order should be confirmed",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:67"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 71811700
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@level2",
+            "line": 1
+          },
+          {
+            "name": "@external",
+            "line": 1
+          },
+          {
+            "name": "@e2e",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "end-to-end-checkout,-data-from-an-external-json-file-(level-2)",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "End-to-end checkout, data from an external JSON file (Level 2)",
+    "tags": [
+      {
+        "name": "@level2",
+        "line": 1
+      },
+      {
+        "name": "@external",
+        "line": 1
+      },
+      {
+        "name": "@e2e",
+        "line": 1
+      }
+    ],
+    "uri": "src\\Cucumber\\level-02-data-driven\\features\\checkout-external-data.feature"
+  },
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "ttacart-login-outcomes-(level-2-—-scenario-outline);standard_user-logging-in-ends-on-the-products",
+        "keyword": "Scenario Outline",
+        "line": 13,
+        "name": "standard_user logging in ends on the products",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 252547300
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 779150799
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am on the TTACart login page",
+            "match": {
+              "location": "src\\Cucumber\\level-01-basic\\steps\\login.steps.ts:5"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 497554299
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I log in as \"standard_user\" with password \"tta_secret\"",
+            "match": {
+              "location": "src\\Cucumber\\level-01-basic\\steps\\login.steps.ts:9"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 18058899
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "I should see the \"products\"",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 55846800
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@level2",
+            "line": 1
+          },
+          {
+            "name": "@outline",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "ttacart-login-outcomes-(level-2-—-scenario-outline);problem_user-logging-in-ends-on-the-products",
+        "keyword": "Scenario Outline",
+        "line": 14,
+        "name": "problem_user logging in ends on the products",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 256951900
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 794635700
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am on the TTACart login page",
+            "match": {
+              "location": "src\\Cucumber\\level-01-basic\\steps\\login.steps.ts:5"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 498138500
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I log in as \"problem_user\" with password \"tta_secret\"",
+            "match": {
+              "location": "src\\Cucumber\\level-01-basic\\steps\\login.steps.ts:9"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 15128899
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "I should see the \"products\"",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 70545699
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@level2",
+            "line": 1
+          },
+          {
+            "name": "@outline",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "ttacart-login-outcomes-(level-2-—-scenario-outline);performance_glitch_user-logging-in-ends-on-the-products",
+        "keyword": "Scenario Outline",
+        "line": 15,
+        "name": "performance_glitch_user logging in ends on the products",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 233843700
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 725907800
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am on the TTACart login page",
+            "match": {
+              "location": "src\\Cucumber\\level-01-basic\\steps\\login.steps.ts:5"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 4477812700
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I log in as \"performance_glitch_user\" with password \"tta_secret\"",
+            "match": {
+              "location": "src\\Cucumber\\level-01-basic\\steps\\login.steps.ts:9"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8034699
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "I should see the \"products\"",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 58847000
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@level2",
+            "line": 1
+          },
+          {
+            "name": "@outline",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "ttacart-login-outcomes-(level-2-—-scenario-outline);locked_out_user-logging-in-ends-on-the-error",
+        "keyword": "Scenario Outline",
+        "line": 19,
+        "name": "locked_out_user logging in ends on the error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 238571700
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 848991400
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am on the TTACart login page",
+            "match": {
+              "location": "src\\Cucumber\\level-01-basic\\steps\\login.steps.ts:5"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 112727500
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I log in as \"locked_out_user\" with password \"tta_secret\"",
+            "match": {
+              "location": "src\\Cucumber\\level-01-basic\\steps\\login.steps.ts:9"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 3129799
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "I should see the \"error\"",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 66747500
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@level2",
+            "line": 1
+          },
+          {
+            "name": "@outline",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "ttacart-login-outcomes-(level-2-—-scenario-outline);standard_user-logging-in-ends-on-the-error",
+        "keyword": "Scenario Outline",
+        "line": 20,
+        "name": "standard_user logging in ends on the error",
+        "steps": [
+          {
+            "result": {
+              "status": "passed",
+              "duration": 283406800
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 945226800
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I am on the TTACart login page",
+            "match": {
+              "location": "src\\Cucumber\\level-01-basic\\steps\\login.steps.ts:5"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 134377400
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I log in as \"standard_user\" with password \"wrong_password\"",
+            "match": {
+              "location": "src\\Cucumber\\level-01-basic\\steps\\login.steps.ts:9"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 8503700
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "I should see the \"error\"",
+            "match": {
+              "location": "src\\Cucumber\\level-02-data-driven\\steps\\checkout.steps.ts:26"
+            }
+          },
+          {
+            "result": {
+              "status": "passed",
+              "duration": 61689800
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@level2",
+            "line": 1
+          },
+          {
+            "name": "@outline",
+            "line": 1
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "ttacart-login-outcomes-(level-2-—-scenario-outline)",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "TTACart login outcomes (Level 2 — Scenario Outline)",
+    "tags": [
+      {
+        "name": "@level2",
+        "line": 1
+      },
+      {
+        "name": "@outline",
+        "line": 1
+      }
+    ],
+    "uri": "src\\Cucumber\\level-02-data-driven\\features\\login-outline.feature"
+  }
+]

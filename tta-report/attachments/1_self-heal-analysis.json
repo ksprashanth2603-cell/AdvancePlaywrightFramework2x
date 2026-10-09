@@ -1,0 +1,9 @@
+{
+  "strategy": "ordered-selector-fallback",
+  "attemptedSelectors": [
+    "[data-testid=\"username\"]",
+    "[data-test=\"username\"]"
+  ],
+  "resolvedSelector": "[data-test=\"username\"]",
+  "outcome": "login-succeeded"
+}

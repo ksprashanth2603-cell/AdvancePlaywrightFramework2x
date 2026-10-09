@@ -1,0 +1,11 @@
+{
+  "firstname": "Morgan",
+  "lastname": "Taylor",
+  "totalprice": 584,
+  "depositpaid": true,
+  "bookingdates": {
+    "checkin": "2027-03-12",
+    "checkout": "2027-03-16"
+  },
+  "additionalneeds": "Late checkout"
+}

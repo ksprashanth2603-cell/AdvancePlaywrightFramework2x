@@ -1,0 +1,13 @@
+{
+  "changes": [
+    {
+      "testName": "booking create API",
+      "previousStatus": "passed",
+      "currentStatus": "failed"
+    }
+  ],
+  "result": {
+    "status": "unavailable",
+    "reason": "missing_api_key"
+  }
+}

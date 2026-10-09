@@ -176,6 +176,71 @@ git push origin main
 - Keep selectors stable and favor real UI behavior assertions
 - Use `.env` and GitHub Actions secrets for configuration and credentials
 
+## AI agent factory and prompt architecture
+
+This repository also includes a lightweight AI layer that augments the Playwright automation flow with structured, validated LLM outputs.
+
+### What the agent factory does
+
+The core is `src/ai/agentFactory.ts`. It centralizes the logic for:
+
+- loading the active AI provider configuration from environment values
+- instantiating the provider client
+- generating a prompt from agent input
+- sending the prompt to the LLM
+- parsing the model response as JSON
+- validating the output with Ajv against a schema
+- retrying once when validation fails
+- returning a clean `available` or `unavailable` result
+
+This pattern makes every AI feature reliable and predictable instead of relying on raw model output.
+
+### Architecture in order
+
+1. `src/ai/config/providers.ts` selects the provider, base URL, and API key.
+2. `src/ai/llmClient.ts` sends the request to the provider and normalizes the response.
+3. `src/ai/agentFactory.ts` turns a prompt plus schema into a typed agent.
+4. Agent implementations in `src/ai/agents/` handle specific automation tasks.
+5. Playwright tests or reporting flows consume the returned structured data.
+
+### Current agent examples
+
+- `flakyAnalyzer.ts` summarizes flaky test status changes.
+- `rcaAgents.ts` performs root-cause analysis on failed assertions.
+- `testDataGenerator.ts` creates realistic API payloads using schema validation.
+- `SelfHealDemo.spec.ts` demonstrates selector fallback logic and attaches AI analysis output.
+
+### Prompting pattern
+
+The project uses a strict design pattern for all prompts:
+
+- a clear task description
+- controlled input data
+- a valid JSON schema
+- machine-readable output only
+- validation before trusting the result
+
+This keeps AI behavior deterministic and easy to integrate into an automation framework.
+
+### Example flow
+
+```ts
+const agent = createAgent({
+  name: 'test-data-generator',
+  prompt: ({ scenario }) => `Create a realistic booking payload for ${scenario}`,
+  schema: bookingSchema,
+});
+
+const result = await agent({ scenario: 'checkout with guest user' });
+```
+
+The agent returns either:
+
+- `{ status: 'available', data: ... }`
+- `{ status: 'unavailable', reason: 'missing_api_key' | 'provider_error' | 'invalid_output' }`
+
+That gives the rest of the framework a consistent contract for working with AI features.
+
 ## License
 
 This project uses the ISC license declared in `package.json`.

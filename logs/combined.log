@@ -358,3 +358,541 @@
 2026-10-06 23:21:22 [info] [booking-crud] Step 1: DELETE responded with status 201
 2026-10-06 23:21:22 [info] [booking-crud] Step 2: confirming booking 373 is gone (expect 404)
 2026-10-06 23:21:22 [info] [booking-crud] Step 2: booking 373 returns 404 as expected
+2026-10-07 01:08:12 [info] Created booking id: 3728
+2026-10-07 01:08:14 [info] Created auth token for PUT booking flow
+2026-10-07 01:08:14 [info] Created booking id for update: 3747
+2026-10-07 01:08:14 [info] Updated booking id 3747: Pramod Dutta
+2026-10-07 01:08:15 [info] Created auth token for CRUD flow
+2026-10-07 01:08:16 [info] Created booking id for CRUD flow: 3763
+2026-10-07 01:08:16 [info] Updated booking id 3763: Pramod Dutta
+2026-10-07 01:08:17 [info] [create-booking] Step 1: POST /booking for Helper Creator (price 640)
+2026-10-07 01:08:17 [info] [create-booking] Step 1: server responded with status 405
+2026-10-07 01:08:18 [info] [create-booking] Step 1: POST /booking for Helper Creator (price 640)
+2026-10-07 01:08:18 [info] [create-booking] Step 1: server responded with status 405
+2026-10-07 01:08:19 [info] [create-booking] Step 1: POST /booking for Helper Creator (price 640)
+2026-10-07 01:08:19 [info] [create-booking] Step 1: server responded with status 405
+2026-10-07 01:08:24 [info] [booking-crud] Step 1: creating booking for E2E Journey
+2026-10-07 01:08:25 [info] [booking-crud] Step 1: created booking id 3848
+2026-10-07 01:08:26 [info] [booking-crud] Step 1: updating booking 3848 using fixture token
+2026-10-07 01:08:26 [info] [booking-crud] Step 2: reading booking 3848 back to verify persistence
+2026-10-07 01:08:26 [info] [booking-crud] Step 2: booking 3848 confirmed as "Updated"
+2026-10-07 01:08:27 [info] [booking-crud] Step 1: deleting booking 3848
+2026-10-07 01:08:27 [info] [booking-crud] Step 1: DELETE responded with status 201
+2026-10-07 01:08:27 [info] [booking-crud] Step 2: confirming booking 3848 is gone (expect 404)
+2026-10-07 01:08:27 [info] [booking-crud] Step 2: booking 3848 returns 404 as expected
+2026-10-07 01:08:29 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-10-07 01:08:29 [info] [LoginPage] Open login pgae
+2026-10-07 01:08:30 [info] [LoginPage] loginAs standard_user
+2026-10-07 01:08:31 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-10-07 01:08:32 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-07 01:08:33 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-10-07 01:08:34 [info] [e2e-checkout] Step 5a: filling guest details for Orlo Gutmann
+2026-10-07 01:08:35 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-10-07 01:08:36 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-10-07 01:08:44 [info] [LoginPage] Open login pgae
+2026-10-07 02:14:46 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-10-07 02:14:46 [info] [LoginPage] Open login pgae
+2026-10-07 02:15:45 [info] [LoginPage] loginAs standard_user
+2026-10-07 02:26:46 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-10-07 02:26:46 [info] [LoginPage] Open login pgae
+2026-10-07 02:38:49 [info] [login.spec] Opening the TTACart login page
+2026-10-07 02:38:49 [info] [LoginPage] Open login pgae
+2026-10-07 02:38:51 [info] [login.spec] Logging in as standard_user
+2026-10-07 02:38:51 [info] [LoginPage] loginAs standard_user
+2026-10-07 02:38:51 [info] [login.spec] Asserting login form is hidden after login
+2026-10-08 01:59:17 [info] [LoginPage] Open login pgae
+2026-10-08 01:59:21 [info] [LoginPage] loginAs standard_user
+2026-10-08 01:59:22 [info] [LoginPage] Open login pgae
+2026-10-08 01:59:23 [info] [LoginPage] loginAs locked_out_user
+2026-10-08 01:59:23 [info] [LoginPage] Open login pgae
+2026-10-08 01:59:24 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:01:36 [info] [LoginPage] Open login pgae
+2026-10-08 02:01:37 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:01:38 [info] [LoginPage] Open login pgae
+2026-10-08 02:01:39 [info] [LoginPage] loginAs locked_out_user
+2026-10-08 02:01:39 [info] [LoginPage] Open login pgae
+2026-10-08 02:01:40 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:34:27 [info] [LoginPage] Open login pgae
+2026-10-08 02:34:28 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:34:29 [info] [LoginPage] Open login pgae
+2026-10-08 02:34:30 [info] [LoginPage] loginAs locked_out_user
+2026-10-08 02:34:30 [info] [LoginPage] Open login pgae
+2026-10-08 02:34:31 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:37:52 [info] [LoginPage] Open login pgae
+2026-10-08 02:37:52 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:37:54 [info] [LoginPage] Open login pgae
+2026-10-08 02:37:55 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:37:57 [info] [LoginPage] Open login pgae
+2026-10-08 02:37:58 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:38:01 [info] [LoginPage] Open login pgae
+2026-10-08 02:38:02 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:38:25 [info] [LoginPage] Open login pgae
+2026-10-08 02:38:26 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:38:28 [info] [LoginPage] Open login pgae
+2026-10-08 02:38:29 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:38:31 [info] [LoginPage] Open login pgae
+2026-10-08 02:38:32 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:38:35 [info] [LoginPage] Open login pgae
+2026-10-08 02:38:36 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:38:39 [info] [LoginPage] Open login pgae
+2026-10-08 02:38:39 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:38:40 [info] [LoginPage] Open login pgae
+2026-10-08 02:38:41 [info] [LoginPage] loginAs problem_user
+2026-10-08 02:38:42 [info] [LoginPage] Open login pgae
+2026-10-08 02:38:43 [info] [LoginPage] loginAs performance_glitch_user
+2026-10-08 02:38:48 [info] [LoginPage] Open login pgae
+2026-10-08 02:38:49 [info] [LoginPage] loginAs locked_out_user
+2026-10-08 02:38:49 [info] [LoginPage] Open login pgae
+2026-10-08 02:38:50 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:54:52 [info] [LoginPage] Open login pgae
+2026-10-08 02:54:53 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:54:55 [info] [LoginPage] Open login pgae
+2026-10-08 02:54:56 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:54:58 [info] [LoginPage] Open login pgae
+2026-10-08 02:54:59 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:55:02 [info] [LoginPage] Open login pgae
+2026-10-08 02:55:03 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:55:05 [info] [LoginPage] Open login pgae
+2026-10-08 02:55:06 [info] [LoginPage] loginAs standard_user
+2026-10-08 02:55:07 [info] [LoginPage] Open login pgae
+2026-10-08 02:55:07 [info] [LoginPage] loginAs problem_user
+2026-10-08 02:55:08 [info] [LoginPage] Open login pgae
+2026-10-08 02:55:09 [info] [LoginPage] loginAs performance_glitch_user
+2026-10-08 02:55:14 [info] [LoginPage] Open login pgae
+2026-10-08 02:55:15 [info] [LoginPage] loginAs locked_out_user
+2026-10-08 02:55:15 [info] [LoginPage] Open login pgae
+2026-10-08 02:55:16 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:29:19 [info] Created booking id: 5589
+2026-10-10 00:29:22 [info] Created auth token for PUT booking flow
+2026-10-10 00:29:22 [info] Created booking id for update: 5623
+2026-10-10 00:29:23 [info] Updated booking id 5623: Pramod Dutta
+2026-10-10 00:29:24 [info] Created auth token for CRUD flow
+2026-10-10 00:29:25 [info] Created booking id for CRUD flow: 5659
+2026-10-10 00:29:27 [info] Updated booking id 5659: Pramod Dutta
+2026-10-10 00:29:27 [info] [create-booking] Step 1: POST /booking for Helper Creator (price 640)
+2026-10-10 00:29:28 [info] [create-booking] Step 1: server responded with status 405
+2026-10-10 00:49:15 [info] Created booking id: 4289
+2026-10-10 00:49:17 [info] Created auth token for PUT booking flow
+2026-10-10 00:49:17 [info] Created booking id for update: 4303
+2026-10-10 00:49:17 [info] Updated booking id 4303: Pramod Dutta
+2026-10-10 00:49:18 [info] Created auth token for CRUD flow
+2026-10-10 00:49:19 [info] Created booking id for CRUD flow: 4321
+2026-10-10 00:49:19 [info] Updated booking id 4321: Pramod Dutta
+2026-10-10 00:49:20 [info] [create-booking] Step 1: POST /booking for Helper Creator (price 640)
+2026-10-10 00:49:20 [info] [create-booking] Step 1: server responded with status 405
+2026-10-10 00:49:24 [info] [booking-crud] Step 1: creating booking for E2E Journey
+2026-10-10 00:49:25 [info] [booking-crud] Step 1: created booking id 4390
+2026-10-10 00:49:26 [info] [booking-crud] Step 1: updating booking 4390 using fixture token
+2026-10-10 00:49:26 [info] [booking-crud] Step 2: reading booking 4390 back to verify persistence
+2026-10-10 00:49:26 [info] [booking-crud] Step 2: booking 4390 confirmed as "Updated"
+2026-10-10 00:49:27 [info] [booking-crud] Step 1: deleting booking 4390
+2026-10-10 00:49:27 [info] [booking-crud] Step 1: DELETE responded with status 201
+2026-10-10 00:49:27 [info] [booking-crud] Step 2: confirming booking 4390 is gone (expect 404)
+2026-10-10 00:49:28 [info] [booking-crud] Step 2: booking 4390 returns 404 as expected
+2026-10-10 00:49:31 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-10-10 00:49:31 [info] [LoginPage] Open login pgae
+2026-10-10 00:49:32 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:49:33 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-10-10 00:49:34 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 00:49:34 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-10-10 00:49:35 [info] [e2e-checkout] Step 5a: filling guest details for Ginger Becker
+2026-10-10 00:49:36 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-10-10 00:49:37 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-10-10 00:49:40 [info] [LoginPage] Open login pgae
+2026-10-10 00:49:41 [info] [LoginPage] loginAs locked_out_user
+2026-10-10 00:49:41 [info] [e2e-checkout-new-fixture] Invalid login fixture verified for locked_out_user
+2026-10-10 00:49:42 [info] [LoginPage] Open login pgae
+2026-10-10 00:49:44 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:49:45 [info] [e2e-checkout-new-fixture] Fixture selected item "test-allthethings-tshirt-red"
+2026-10-10 00:49:51 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-10-10 00:49:51 [info] [LoginPage] Open login pgae
+2026-10-10 00:49:52 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:49:53 [info] [e2e-checkout-env] Env config: item="test-allthethings-tshirt-red", customer="John Doe", postalCode="560001"
+2026-10-10 00:49:53 [info] [e2e-checkout-env] Step 2: navigating to the inventory page
+2026-10-10 00:49:53 [info] [e2e-checkout-env] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 00:49:53 [info] [e2e-checkout-env] Step 4: opening the cart and verifying one row
+2026-10-10 00:49:54 [info] [e2e-checkout-env] Step 5a: filling guest details for John Doe
+2026-10-10 00:49:55 [info] [e2e-checkout-env] Step 5b: reviewing the overview and finishing the order
+2026-10-10 00:49:56 [info] [e2e-checkout-env] Step 6: asserting the order is complete
+2026-10-10 00:49:59 [info] [login.spec] Opening the TTACart login page
+2026-10-10 00:49:59 [info] [LoginPage] Open login pgae
+2026-10-10 00:50:00 [info] [login.spec] Logging in as standard_user
+2026-10-10 00:50:00 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:50:01 [info] [login.spec] Asserting login form is hidden after login
+2026-10-10 00:53:33 [info] Created booking id: 1926
+2026-10-10 00:53:34 [info] Created auth token for PUT booking flow
+2026-10-10 00:53:35 [info] Created booking id for update: 1947
+2026-10-10 00:53:35 [info] Updated booking id 1947: Pramod Dutta
+2026-10-10 00:53:36 [info] Created auth token for CRUD flow
+2026-10-10 00:53:36 [info] Created booking id for CRUD flow: 1967
+2026-10-10 00:53:37 [info] Updated booking id 1967: Pramod Dutta
+2026-10-10 00:53:37 [info] [create-booking] Step 1: POST /booking for Helper Creator (price 640)
+2026-10-10 00:53:38 [info] [create-booking] Step 1: server responded with status 405
+2026-10-10 00:53:42 [info] [booking-crud] Step 1: creating booking for E2E Journey
+2026-10-10 00:53:43 [info] [booking-crud] Step 1: created booking id 2043
+2026-10-10 00:53:44 [info] [booking-crud] Step 1: updating booking 2043 using fixture token
+2026-10-10 00:53:44 [info] [booking-crud] Step 2: reading booking 2043 back to verify persistence
+2026-10-10 00:53:44 [info] [booking-crud] Step 2: booking 2043 confirmed as "Updated"
+2026-10-10 00:53:45 [info] [booking-crud] Step 1: deleting booking 2043
+2026-10-10 00:53:45 [info] [booking-crud] Step 1: DELETE responded with status 201
+2026-10-10 00:53:45 [info] [booking-crud] Step 2: confirming booking 2043 is gone (expect 404)
+2026-10-10 00:53:45 [info] [booking-crud] Step 2: booking 2043 returns 404 as expected
+2026-10-10 00:53:47 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-10-10 00:53:47 [info] [LoginPage] Open login pgae
+2026-10-10 00:53:49 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:53:49 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-10-10 00:53:50 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 00:53:50 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-10-10 00:53:51 [info] [e2e-checkout] Step 5a: filling guest details for Lenna Hagenes
+2026-10-10 00:53:52 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-10-10 00:53:53 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-10-10 00:53:55 [info] [LoginPage] Open login pgae
+2026-10-10 00:53:56 [info] [LoginPage] loginAs locked_out_user
+2026-10-10 00:53:56 [info] [e2e-checkout-new-fixture] Invalid login fixture verified for locked_out_user
+2026-10-10 00:53:57 [info] [LoginPage] Open login pgae
+2026-10-10 00:53:58 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:53:59 [info] [e2e-checkout-new-fixture] Fixture selected item "test-allthethings-tshirt-red"
+2026-10-10 00:54:04 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-10-10 00:54:04 [info] [LoginPage] Open login pgae
+2026-10-10 00:54:05 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:54:06 [info] [e2e-checkout-env] Env config: item="test-allthethings-tshirt-red", customer="John Doe", postalCode="560001"
+2026-10-10 00:54:06 [info] [e2e-checkout-env] Step 2: navigating to the inventory page
+2026-10-10 00:54:06 [info] [e2e-checkout-env] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 00:54:07 [info] [e2e-checkout-env] Step 4: opening the cart and verifying one row
+2026-10-10 00:54:07 [info] [e2e-checkout-env] Step 5a: filling guest details for John Doe
+2026-10-10 00:54:08 [info] [e2e-checkout-env] Step 5b: reviewing the overview and finishing the order
+2026-10-10 00:54:09 [info] [e2e-checkout-env] Step 6: asserting the order is complete
+2026-10-10 00:54:11 [info] [login.spec] Opening the TTACart login page
+2026-10-10 00:54:11 [info] [LoginPage] Open login pgae
+2026-10-10 00:54:12 [info] [login.spec] Logging in as standard_user
+2026-10-10 00:54:12 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:54:13 [info] [login.spec] Asserting login form is hidden after login
+2026-10-10 00:56:52 [info] [login.spec] Opening the TTACart login page
+2026-10-10 00:56:52 [info] [LoginPage] Open login pgae
+2026-10-10 00:56:53 [info] [login.spec] Logging in as standard_user
+2026-10-10 00:56:53 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:56:54 [info] [login.spec] Asserting login form is hidden after login
+2026-10-10 00:57:42 [info] Created booking id: 4754
+2026-10-10 00:57:43 [info] Created auth token for PUT booking flow
+2026-10-10 00:57:43 [info] Created booking id for update: 4772
+2026-10-10 00:57:43 [info] Updated booking id 4772: Pramod Dutta
+2026-10-10 00:57:44 [info] Created auth token for CRUD flow
+2026-10-10 00:57:45 [info] Created booking id for CRUD flow: 4794
+2026-10-10 00:57:46 [info] Updated booking id 4794: Pramod Dutta
+2026-10-10 00:57:46 [info] [create-booking] Step 1: POST /booking for Helper Creator (price 640)
+2026-10-10 00:57:46 [info] [create-booking] Step 1: server responded with status 405
+2026-10-10 00:57:50 [info] [booking-crud] Step 1: creating booking for E2E Journey
+2026-10-10 00:57:51 [info] [booking-crud] Step 1: created booking id 4866
+2026-10-10 00:57:52 [info] [booking-crud] Step 1: updating booking 4866 using fixture token
+2026-10-10 00:57:52 [info] [booking-crud] Step 2: reading booking 4866 back to verify persistence
+2026-10-10 00:57:52 [info] [booking-crud] Step 2: booking 4866 confirmed as "Updated"
+2026-10-10 00:57:53 [info] [booking-crud] Step 1: deleting booking 4866
+2026-10-10 00:57:53 [info] [booking-crud] Step 1: DELETE responded with status 201
+2026-10-10 00:57:53 [info] [booking-crud] Step 2: confirming booking 4866 is gone (expect 404)
+2026-10-10 00:57:53 [info] [booking-crud] Step 2: booking 4866 returns 404 as expected
+2026-10-10 00:57:55 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-10-10 00:57:55 [info] [LoginPage] Open login pgae
+2026-10-10 00:57:56 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:57:57 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-10-10 00:57:58 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 00:57:58 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-10-10 00:57:59 [info] [e2e-checkout] Step 5a: filling guest details for Brooke Torphy
+2026-10-10 00:58:00 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-10-10 00:58:01 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-10-10 00:58:03 [info] [LoginPage] Open login pgae
+2026-10-10 00:58:04 [info] [LoginPage] loginAs locked_out_user
+2026-10-10 00:58:04 [info] [e2e-checkout-new-fixture] Invalid login fixture verified for locked_out_user
+2026-10-10 00:58:05 [info] [LoginPage] Open login pgae
+2026-10-10 00:58:06 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:58:07 [info] [e2e-checkout-new-fixture] Fixture selected item "test-allthethings-tshirt-red"
+2026-10-10 00:58:12 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-10-10 00:58:12 [info] [LoginPage] Open login pgae
+2026-10-10 00:58:13 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:58:13 [info] [e2e-checkout-env] Env config: item="test-allthethings-tshirt-red", customer="John Doe", postalCode="560001"
+2026-10-10 00:58:13 [info] [e2e-checkout-env] Step 2: navigating to the inventory page
+2026-10-10 00:58:14 [info] [e2e-checkout-env] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 00:58:14 [info] [e2e-checkout-env] Step 4: opening the cart and verifying one row
+2026-10-10 00:58:14 [info] [e2e-checkout-env] Step 5a: filling guest details for John Doe
+2026-10-10 00:58:16 [info] [e2e-checkout-env] Step 5b: reviewing the overview and finishing the order
+2026-10-10 00:58:16 [info] [e2e-checkout-env] Step 6: asserting the order is complete
+2026-10-10 00:58:18 [info] [login.spec] Opening the TTACart login page
+2026-10-10 00:58:18 [info] [LoginPage] Open login pgae
+2026-10-10 00:58:19 [info] [login.spec] Logging in as standard_user
+2026-10-10 00:58:19 [info] [LoginPage] loginAs standard_user
+2026-10-10 00:58:20 [info] [login.spec] Asserting login form is hidden after login
+2026-10-10 01:02:18 [info] [LoginPage] Open login pgae
+2026-10-10 01:02:52 [info] [LoginPage] Open login pgae
+2026-10-10 01:07:57 [info] [LoginPage] Open login pgae
+2026-10-10 01:13:33 [info] Created booking id: 1538
+2026-10-10 01:13:35 [info] Created auth token for PUT booking flow
+2026-10-10 01:13:36 [info] Created booking id for update: 1563
+2026-10-10 01:13:36 [info] Updated booking id 1563: Pramod Dutta
+2026-10-10 01:13:37 [info] Created auth token for CRUD flow
+2026-10-10 01:13:37 [info] Created booking id for CRUD flow: 1580
+2026-10-10 01:13:38 [info] Updated booking id 1580: Pramod Dutta
+2026-10-10 01:13:38 [info] [create-booking] Step 1: POST /booking for Helper Creator (price 640)
+2026-10-10 01:13:39 [info] [create-booking] Step 1: server responded with status 405
+2026-10-10 01:13:44 [info] [booking-crud] Step 1: creating booking for E2E Journey
+2026-10-10 01:13:45 [info] [booking-crud] Step 1: created booking id 1643
+2026-10-10 01:13:46 [info] [booking-crud] Step 1: updating booking 1643 using fixture token
+2026-10-10 01:13:46 [info] [booking-crud] Step 2: reading booking 1643 back to verify persistence
+2026-10-10 01:13:46 [info] [booking-crud] Step 2: booking 1643 confirmed as "Updated"
+2026-10-10 01:13:47 [info] [booking-crud] Step 1: deleting booking 1643
+2026-10-10 01:13:47 [info] [booking-crud] Step 1: DELETE responded with status 201
+2026-10-10 01:13:47 [info] [booking-crud] Step 2: confirming booking 1643 is gone (expect 404)
+2026-10-10 01:13:48 [info] [booking-crud] Step 2: booking 1643 returns 404 as expected
+2026-10-10 01:13:50 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-10-10 01:13:50 [info] [LoginPage] Open login pgae
+2026-10-10 01:13:52 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:13:53 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-10-10 01:13:53 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 01:13:54 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-10-10 01:13:54 [info] [e2e-checkout] Step 5a: filling guest details for Isadore Collins
+2026-10-10 01:13:59 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-10-10 01:14:00 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-10-10 01:14:04 [info] [LoginPage] Open login pgae
+2026-10-10 01:14:05 [info] [LoginPage] loginAs locked_out_user
+2026-10-10 01:14:05 [info] [e2e-checkout-new-fixture] Invalid login fixture verified for locked_out_user
+2026-10-10 01:14:07 [info] [LoginPage] Open login pgae
+2026-10-10 01:14:08 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:14:09 [info] [e2e-checkout-new-fixture] Fixture selected item "test-allthethings-tshirt-red"
+2026-10-10 01:14:16 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-10-10 01:14:16 [info] [LoginPage] Open login pgae
+2026-10-10 01:14:17 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:14:18 [info] [e2e-checkout-env] Env config: item="test-allthethings-tshirt-red", customer="John Doe", postalCode="560001"
+2026-10-10 01:14:18 [info] [e2e-checkout-env] Step 2: navigating to the inventory page
+2026-10-10 01:14:18 [info] [e2e-checkout-env] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 01:14:18 [info] [e2e-checkout-env] Step 4: opening the cart and verifying one row
+2026-10-10 01:14:19 [info] [e2e-checkout-env] Step 5a: filling guest details for John Doe
+2026-10-10 01:14:21 [info] [e2e-checkout-env] Step 5b: reviewing the overview and finishing the order
+2026-10-10 01:14:22 [info] [e2e-checkout-env] Step 6: asserting the order is complete
+2026-10-10 01:14:24 [info] [login.spec] Opening the TTACart login page
+2026-10-10 01:14:24 [info] [LoginPage] Open login pgae
+2026-10-10 01:14:25 [info] [login.spec] Logging in as standard_user
+2026-10-10 01:14:25 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:14:26 [info] [login.spec] Asserting login form is hidden after login
+2026-10-10 01:14:34 [info] [LoginPage] Open login pgae
+2026-10-10 01:21:05 [info] [LoginPage] Open login pgae
+2026-10-10 01:22:18 [info] Created booking id: 1259
+2026-10-10 01:22:20 [info] Created auth token for PUT booking flow
+2026-10-10 01:22:20 [info] Created booking id for update: 1279
+2026-10-10 01:22:20 [info] Updated booking id 1279: Pramod Dutta
+2026-10-10 01:22:21 [info] Created auth token for CRUD flow
+2026-10-10 01:22:22 [info] Created booking id for CRUD flow: 1294
+2026-10-10 01:22:23 [info] Updated booking id 1294: Pramod Dutta
+2026-10-10 01:22:23 [info] [create-booking] Step 1: POST /booking for Helper Creator (price 640)
+2026-10-10 01:22:23 [info] [create-booking] Step 1: server responded with status 405
+2026-10-10 01:22:29 [info] [booking-crud] Step 1: creating booking for E2E Journey
+2026-10-10 01:22:29 [info] [booking-crud] Step 1: created booking id 1392
+2026-10-10 01:22:30 [info] [booking-crud] Step 1: updating booking 1392 using fixture token
+2026-10-10 01:22:31 [info] [booking-crud] Step 2: reading booking 1392 back to verify persistence
+2026-10-10 01:22:31 [info] [booking-crud] Step 2: booking 1392 confirmed as "Updated"
+2026-10-10 01:22:32 [info] [booking-crud] Step 1: deleting booking 1392
+2026-10-10 01:22:32 [info] [booking-crud] Step 1: DELETE responded with status 201
+2026-10-10 01:22:32 [info] [booking-crud] Step 2: confirming booking 1392 is gone (expect 404)
+2026-10-10 01:22:32 [info] [booking-crud] Step 2: booking 1392 returns 404 as expected
+2026-10-10 01:22:35 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-10-10 01:22:35 [info] [LoginPage] Open login pgae
+2026-10-10 01:22:36 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:22:37 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-10-10 01:22:38 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 01:22:38 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-10-10 01:22:39 [info] [e2e-checkout] Step 5a: filling guest details for Dominick Nitzsche
+2026-10-10 01:22:41 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-10-10 01:22:41 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-10-10 01:22:44 [info] [LoginPage] Open login pgae
+2026-10-10 01:22:45 [info] [LoginPage] loginAs locked_out_user
+2026-10-10 01:22:46 [info] [e2e-checkout-new-fixture] Invalid login fixture verified for locked_out_user
+2026-10-10 01:22:47 [info] [LoginPage] Open login pgae
+2026-10-10 01:22:48 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:22:49 [info] [e2e-checkout-new-fixture] Fixture selected item "test-allthethings-tshirt-red"
+2026-10-10 01:22:54 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-10-10 01:22:54 [info] [LoginPage] Open login pgae
+2026-10-10 01:22:55 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:22:56 [info] [e2e-checkout-env] Env config: item="test-allthethings-tshirt-red", customer="John Doe", postalCode="560001"
+2026-10-10 01:22:56 [info] [e2e-checkout-env] Step 2: navigating to the inventory page
+2026-10-10 01:22:57 [info] [e2e-checkout-env] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 01:22:57 [info] [e2e-checkout-env] Step 4: opening the cart and verifying one row
+2026-10-10 01:22:58 [info] [e2e-checkout-env] Step 5a: filling guest details for John Doe
+2026-10-10 01:25:36 [info] [login.spec] Opening the TTACart login page
+2026-10-10 01:25:36 [info] [LoginPage] Open login pgae
+2026-10-10 01:25:37 [info] [login.spec] Logging in as standard_user
+2026-10-10 01:25:37 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:25:38 [info] [login.spec] Asserting login form is hidden after login
+2026-10-10 01:25:45 [info] [LoginPage] Open login pgae
+2026-10-10 01:26:09 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-10-10 01:26:09 [info] [LoginPage] Open login pgae
+2026-10-10 01:26:10 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:26:11 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-10-10 01:26:12 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 01:26:12 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-10-10 01:26:13 [info] [e2e-checkout] Step 5a: filling guest details for Prudence Dickens-Hane
+2026-10-10 01:26:15 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-10-10 01:26:15 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-10-10 01:26:18 [info] [LoginPage] Open login pgae
+2026-10-10 01:26:19 [info] [LoginPage] loginAs locked_out_user
+2026-10-10 01:26:19 [info] [e2e-checkout-new-fixture] Invalid login fixture verified for locked_out_user
+2026-10-10 01:26:20 [info] [LoginPage] Open login pgae
+2026-10-10 01:26:22 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:26:23 [info] [e2e-checkout-new-fixture] Fixture selected item "test-allthethings-tshirt-red"
+2026-10-10 01:26:28 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-10-10 01:26:28 [info] [LoginPage] Open login pgae
+2026-10-10 01:26:29 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:26:30 [info] [e2e-checkout-env] Env config: item="test-allthethings-tshirt-red", customer="John Doe", postalCode="560001"
+2026-10-10 01:26:30 [info] [e2e-checkout-env] Step 2: navigating to the inventory page
+2026-10-10 01:26:30 [info] [e2e-checkout-env] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 01:26:30 [info] [e2e-checkout-env] Step 4: opening the cart and verifying one row
+2026-10-10 01:26:31 [info] [e2e-checkout-env] Step 5a: filling guest details for John Doe
+2026-10-10 01:26:33 [info] [e2e-checkout-env] Step 5b: reviewing the overview and finishing the order
+2026-10-10 01:26:33 [info] [e2e-checkout-env] Step 6: asserting the order is complete
+2026-10-10 01:28:09 [info] Created booking id: 5441
+2026-10-10 01:28:11 [info] Created auth token for PUT booking flow
+2026-10-10 01:28:11 [info] Created booking id for update: 5459
+2026-10-10 01:28:11 [info] Updated booking id 5459: Pramod Dutta
+2026-10-10 01:28:12 [info] Created auth token for CRUD flow
+2026-10-10 01:28:13 [info] Created booking id for CRUD flow: 5478
+2026-10-10 01:28:14 [info] Updated booking id 5478: Pramod Dutta
+2026-10-10 01:28:14 [info] [create-booking] Step 1: POST /booking for Helper Creator (price 640)
+2026-10-10 01:28:14 [info] [create-booking] Step 1: server responded with status 405
+2026-10-10 01:28:19 [info] [booking-crud] Step 1: creating booking for E2E Journey
+2026-10-10 01:28:20 [info] [booking-crud] Step 1: created booking id 5562
+2026-10-10 01:28:21 [info] [booking-crud] Step 1: updating booking 5562 using fixture token
+2026-10-10 01:28:21 [info] [booking-crud] Step 2: reading booking 5562 back to verify persistence
+2026-10-10 01:28:21 [info] [booking-crud] Step 2: booking 5562 confirmed as "Updated"
+2026-10-10 01:28:22 [info] [booking-crud] Step 1: deleting booking 5562
+2026-10-10 01:28:22 [info] [booking-crud] Step 1: DELETE responded with status 201
+2026-10-10 01:28:22 [info] [booking-crud] Step 2: confirming booking 5562 is gone (expect 404)
+2026-10-10 01:28:22 [info] [booking-crud] Step 2: booking 5562 returns 404 as expected
+2026-10-10 01:28:24 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-10-10 01:28:24 [info] [LoginPage] Open login pgae
+2026-10-10 01:28:25 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:28:26 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-10-10 01:28:27 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 01:28:27 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-10-10 01:28:28 [info] [e2e-checkout] Step 5a: filling guest details for Modesto Buckridge-Ritchie
+2026-10-10 01:28:29 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-10-10 01:28:30 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-10-10 01:28:32 [info] [LoginPage] Open login pgae
+2026-10-10 01:28:33 [info] [LoginPage] loginAs locked_out_user
+2026-10-10 01:28:33 [info] [e2e-checkout-new-fixture] Invalid login fixture verified for locked_out_user
+2026-10-10 01:28:34 [info] [LoginPage] Open login pgae
+2026-10-10 01:28:35 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:28:36 [info] [e2e-checkout-new-fixture] Fixture selected item "test-allthethings-tshirt-red"
+2026-10-10 01:28:42 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-10-10 01:28:42 [info] [LoginPage] Open login pgae
+2026-10-10 01:28:43 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:28:44 [info] [e2e-checkout-env] Env config: item="test-allthethings-tshirt-red", customer="John Doe", postalCode="560001"
+2026-10-10 01:28:44 [info] [e2e-checkout-env] Step 2: navigating to the inventory page
+2026-10-10 01:28:44 [info] [e2e-checkout-env] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 01:28:44 [info] [e2e-checkout-env] Step 4: opening the cart and verifying one row
+2026-10-10 01:28:45 [info] [e2e-checkout-env] Step 5a: filling guest details for John Doe
+2026-10-10 01:28:47 [info] [e2e-checkout-env] Step 5b: reviewing the overview and finishing the order
+2026-10-10 01:28:48 [info] [e2e-checkout-env] Step 6: asserting the order is complete
+2026-10-10 01:28:49 [info] [login.spec] Opening the TTACart login page
+2026-10-10 01:28:49 [info] [LoginPage] Open login pgae
+2026-10-10 01:28:50 [info] [login.spec] Logging in as standard_user
+2026-10-10 01:28:50 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:28:51 [info] [login.spec] Asserting login form is hidden after login
+2026-10-10 01:29:00 [info] [LoginPage] Open login pgae
+2026-10-10 01:31:41 [info] Created booking id: 306
+2026-10-10 01:31:42 [info] Created auth token for PUT booking flow
+2026-10-10 01:31:42 [info] Created booking id for update: 323
+2026-10-10 01:31:42 [info] Updated booking id 323: Pramod Dutta
+2026-10-10 01:31:43 [info] Created auth token for CRUD flow
+2026-10-10 01:31:44 [info] Created booking id for CRUD flow: 351
+2026-10-10 01:31:45 [info] Updated booking id 351: Pramod Dutta
+2026-10-10 01:31:45 [info] [create-booking] Step 1: POST /booking for Helper Creator (price 640)
+2026-10-10 01:31:45 [info] [create-booking] Step 1: server responded with status 200
+2026-10-10 01:31:46 [info] [create-booking] Step 2: verifying booking id 371 echoes the payload
+2026-10-10 01:31:46 [info] [create-booking] Step 2: booking 371 verified OK
+2026-10-10 01:31:47 [info] [booking-crud] Step 1: creating booking for E2E Journey
+2026-10-10 01:31:48 [info] [booking-crud] Step 1: created booking id 405
+2026-10-10 01:31:48 [info] [booking-crud] Step 1: updating booking 405 using fixture token
+2026-10-10 01:31:49 [info] [booking-crud] Step 2: reading booking 405 back to verify persistence
+2026-10-10 01:31:49 [info] [booking-crud] Step 2: booking 405 confirmed as "Updated"
+2026-10-10 01:31:50 [info] [booking-crud] Step 1: deleting booking 405
+2026-10-10 01:31:50 [info] [booking-crud] Step 1: DELETE responded with status 201
+2026-10-10 01:31:50 [info] [booking-crud] Step 2: confirming booking 405 is gone (expect 404)
+2026-10-10 01:31:50 [info] [booking-crud] Step 2: booking 405 returns 404 as expected
+2026-10-10 01:31:52 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-10-10 01:31:52 [info] [LoginPage] Open login pgae
+2026-10-10 01:31:53 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:31:54 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-10-10 01:31:54 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 01:31:55 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-10-10 01:31:55 [info] [e2e-checkout] Step 5a: filling guest details for Wilford Ernser
+2026-10-10 01:31:59 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-10-10 01:31:59 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-10-10 01:32:02 [info] [LoginPage] Open login pgae
+2026-10-10 01:32:03 [info] [LoginPage] loginAs locked_out_user
+2026-10-10 01:32:03 [info] [e2e-checkout-new-fixture] Invalid login fixture verified for locked_out_user
+2026-10-10 01:32:04 [info] [LoginPage] Open login pgae
+2026-10-10 01:32:05 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:32:06 [info] [e2e-checkout-new-fixture] Fixture selected item "test-allthethings-tshirt-red"
+2026-10-10 01:32:11 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-10-10 01:32:11 [info] [LoginPage] Open login pgae
+2026-10-10 01:32:12 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:32:13 [info] [e2e-checkout-env] Env config: item="test-allthethings-tshirt-red", customer="John Doe", postalCode="560001"
+2026-10-10 01:32:13 [info] [e2e-checkout-env] Step 2: navigating to the inventory page
+2026-10-10 01:32:13 [info] [e2e-checkout-env] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 01:32:13 [info] [e2e-checkout-env] Step 4: opening the cart and verifying one row
+2026-10-10 01:32:14 [info] [e2e-checkout-env] Step 5a: filling guest details for John Doe
+2026-10-10 01:32:16 [info] [e2e-checkout-env] Step 5b: reviewing the overview and finishing the order
+2026-10-10 01:32:16 [info] [e2e-checkout-env] Step 6: asserting the order is complete
+2026-10-10 01:32:18 [info] [login.spec] Opening the TTACart login page
+2026-10-10 01:32:18 [info] [LoginPage] Open login pgae
+2026-10-10 01:32:19 [info] [login.spec] Logging in as standard_user
+2026-10-10 01:32:19 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:32:20 [info] [login.spec] Asserting login form is hidden after login
+2026-10-10 01:32:27 [info] [LoginPage] Open login pgae
+2026-10-10 01:33:07 [info] Created booking id: 1362
+2026-10-10 01:33:09 [info] Created auth token for PUT booking flow
+2026-10-10 01:33:09 [info] Created booking id for update: 1384
+2026-10-10 01:33:09 [info] Updated booking id 1384: Pramod Dutta
+2026-10-10 01:33:10 [info] Created auth token for CRUD flow
+2026-10-10 01:33:11 [info] Created booking id for CRUD flow: 1406
+2026-10-10 01:33:11 [info] Updated booking id 1406: Pramod Dutta
+2026-10-10 01:33:12 [info] [create-booking] Step 1: POST /booking for Helper Creator (price 640)
+2026-10-10 01:33:12 [info] [create-booking] Step 1: server responded with status 200
+2026-10-10 01:33:12 [info] [create-booking] Step 2: verifying booking id 1423 echoes the payload
+2026-10-10 01:33:12 [info] [create-booking] Step 2: booking 1423 verified OK
+2026-10-10 01:33:14 [info] [booking-crud] Step 1: creating booking for E2E Journey
+2026-10-10 01:33:14 [info] [booking-crud] Step 1: created booking id 1454
+2026-10-10 01:33:15 [info] [booking-crud] Step 1: updating booking 1454 using fixture token
+2026-10-10 01:33:15 [info] [booking-crud] Step 2: reading booking 1454 back to verify persistence
+2026-10-10 01:33:15 [info] [booking-crud] Step 2: booking 1454 confirmed as "Updated"
+2026-10-10 01:33:16 [info] [booking-crud] Step 1: deleting booking 1454
+2026-10-10 01:33:17 [info] [booking-crud] Step 1: DELETE responded with status 201
+2026-10-10 01:33:17 [info] [booking-crud] Step 2: confirming booking 1454 is gone (expect 404)
+2026-10-10 01:33:17 [info] [booking-crud] Step 2: booking 1454 returns 404 as expected
+2026-10-10 01:33:19 [info] [e2e-checkout] Step 1: logging in as standard_user
+2026-10-10 01:33:19 [info] [LoginPage] Open login pgae
+2026-10-10 01:33:20 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:33:21 [info] [e2e-checkout] Step 2: navigating to the inventory page
+2026-10-10 01:33:21 [info] [e2e-checkout] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 01:33:22 [info] [e2e-checkout] Step 4: opening the cart and verifying one row
+2026-10-10 01:33:22 [info] [e2e-checkout] Step 5a: filling guest details for Burnice Quitzon
+2026-10-10 01:33:24 [info] [e2e-checkout] Step 5b: reviewing the overview and finishing the order
+2026-10-10 01:33:25 [info] [e2e-checkout] Step 6: asserting the order is complete
+2026-10-10 01:33:27 [info] [LoginPage] Open login pgae
+2026-10-10 01:33:28 [info] [LoginPage] loginAs locked_out_user
+2026-10-10 01:33:28 [info] [e2e-checkout-new-fixture] Invalid login fixture verified for locked_out_user
+2026-10-10 01:33:29 [info] [LoginPage] Open login pgae
+2026-10-10 01:33:30 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:33:31 [info] [e2e-checkout-new-fixture] Fixture selected item "test-allthethings-tshirt-red"
+2026-10-10 01:33:36 [info] [e2e-checkout-env] Step 1: logging in as standard_user (from .env)
+2026-10-10 01:33:36 [info] [LoginPage] Open login pgae
+2026-10-10 01:33:37 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:33:38 [info] [e2e-checkout-env] Env config: item="test-allthethings-tshirt-red", customer="John Doe", postalCode="560001"
+2026-10-10 01:33:38 [info] [e2e-checkout-env] Step 2: navigating to the inventory page
+2026-10-10 01:33:38 [info] [e2e-checkout-env] Step 3: adding item "test-allthethings-tshirt-red" to the cart
+2026-10-10 01:33:39 [info] [e2e-checkout-env] Step 4: opening the cart and verifying one row
+2026-10-10 01:33:39 [info] [e2e-checkout-env] Step 5a: filling guest details for John Doe
+2026-10-10 01:33:41 [info] [e2e-checkout-env] Step 5b: reviewing the overview and finishing the order
+2026-10-10 01:33:41 [info] [e2e-checkout-env] Step 6: asserting the order is complete
+2026-10-10 01:33:43 [info] [login.spec] Opening the TTACart login page
+2026-10-10 01:33:43 [info] [LoginPage] Open login pgae
+2026-10-10 01:33:44 [info] [login.spec] Logging in as standard_user
+2026-10-10 01:33:44 [info] [LoginPage] loginAs standard_user
+2026-10-10 01:33:45 [info] [login.spec] Asserting login form is hidden after login
+2026-10-10 01:33:52 [info] [LoginPage] Open login pgae

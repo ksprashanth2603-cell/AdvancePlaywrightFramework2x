@@ -1,0 +1,12 @@
+{
+  "failure": {
+    "testTitle": "booking create API returns a created booking",
+    "assertion": "expect(response.status()).toBe(200)",
+    "expected": "200",
+    "actual": "500"
+  },
+  "result": {
+    "status": "unavailable",
+    "reason": "missing_api_key"
+  }
+}

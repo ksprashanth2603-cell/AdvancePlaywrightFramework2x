@@ -52,9 +52,16 @@ export class ApiHelper {
     // builturl(example1)
 
     private buildUrl(url: string, params?: Record<string, string>): string {
-        if (!params) return url;
+        const baseUrl = process.env.API_BASE_URL || 'https://restful-booker.herokuapp.com';
+        let resolvedUrl = url;
+
+        if (url.startsWith('/')) {
+            resolvedUrl = `${baseUrl}${url}`;
+        }
+
+        if (!params) return resolvedUrl;
         const searchParams = new URLSearchParams(params);
-        return `${url}?${searchParams.toString()}`;
+        return `${resolvedUrl}?${searchParams.toString()}`;
     }
 
     /**

@@ -17,6 +17,7 @@ import {
 } from '@playwright/test/reporter';
 import * as fs from 'fs';
 import * as path from 'path';
+import { execFile } from 'child_process';
 
 interface StepData {
     title: string;
@@ -455,6 +456,18 @@ class CustomTTAReporter implements Reporter {
         console.log('\n📊 Generating TTA HTML Report...');
         await this.generateReport();
         console.log(`✅ Report generated: ${this.outputFile}`);
+
+        if (!process.env.CI) {
+            const reportPath = path.resolve(this.outputFile);
+            const [openCommand, openArgs] = process.platform === 'win32'
+                ? ['explorer.exe', [reportPath]]
+                : process.platform === 'darwin'
+                    ? ['open', [reportPath]]
+                    : ['xdg-open', [reportPath]];
+            execFile(openCommand, openArgs, { windowsHide: true }, (error) => {
+                if (error) console.warn(`Could not open the custom report: ${error.message}`);
+            });
+        }
     }
 
     private formatTime(date: Date): string {
@@ -705,8 +718,29 @@ class CustomTTAReporter implements Reporter {
         ${this.generateMetaSection(browserName, platform)}
         ${this.generateSuiteStatus()}
         ${this.generateRunStatus()}
-        ${this.generateFilters()}
-        ${this.generateTestTable()}
+        <nav class="report-tabs" role="tablist" aria-label="Report sections">
+            <button class="report-tab active" id="tab-button-test-results" type="button" role="tab" aria-selected="true" aria-controls="report-panel-test-results" onclick="activateReportTab('test-results', this)">📋 Test Results</button>
+            <button class="report-tab" id="tab-button-ai-data" type="button" role="tab" aria-selected="false" aria-controls="report-panel-ai-data" onclick="activateReportTab('ai-data', this)">🧠 AI Data (${this.getAttachmentCount('ai-data')})</button>
+            <button class="report-tab" id="tab-button-ai-verdict" type="button" role="tab" aria-selected="false" aria-controls="report-panel-ai-verdict" onclick="activateReportTab('ai-verdict', this)">⚖️ AI Verdict (${this.getAttachmentCount('root-cause-analysis')})</button>
+            <button class="report-tab" id="tab-button-flaky" type="button" role="tab" aria-selected="false" aria-controls="report-panel-flaky" onclick="activateReportTab('flaky', this)">〰️ Flaky (${this.getAttachmentCount('flaky-analysis')})</button>
+            <button class="report-tab" id="tab-button-self-heal" type="button" role="tab" aria-selected="false" aria-controls="report-panel-self-heal" onclick="activateReportTab('self-heal', this)">🛠️ Self-Heal (${this.getAttachmentCount('self-heal-analysis')})</button>
+        </nav>
+        <section class="report-tab-panel active" id="report-panel-test-results" role="tabpanel" aria-labelledby="tab-button-test-results">
+            ${this.generateFilters()}
+            ${this.generateTestTable()}
+        </section>
+        <section class="report-tab-panel" id="report-panel-ai-data" role="tabpanel" aria-labelledby="tab-button-ai-data">
+            ${this.generateAttachmentTab('ai-data', 'No AI data was attached in this run.')}
+        </section>
+        <section class="report-tab-panel" id="report-panel-ai-verdict" role="tabpanel" aria-labelledby="tab-button-ai-verdict">
+            ${this.generateAttachmentTab('root-cause-analysis', 'No AI verdicts were attached in this run.')}
+        </section>
+        <section class="report-tab-panel" id="report-panel-flaky" role="tabpanel" aria-labelledby="tab-button-flaky">
+            ${this.generateAttachmentTab('flaky-analysis', 'No flaky analysis was attached in this run.')}
+        </section>
+        <section class="report-tab-panel" id="report-panel-self-heal" role="tabpanel" aria-labelledby="tab-button-self-heal">
+            ${this.generateAttachmentTab('self-heal-analysis', 'No self-healing locator results were attached in this run.')}
+        </section>
     </div>
 
     <div id="screenshotModal" class="modal">
@@ -907,6 +941,42 @@ class CustomTTAReporter implements Reporter {
         return html;
     }
 
+    private getAttachmentCount(name: string): number {
+        return this.testResults.reduce(
+            (count, test) => count + test.attachments.filter(attachment => attachment.name === name).length,
+            0,
+        );
+    }
+
+    private generateAttachmentTab(attachmentName: string, emptyMessage: string): string {
+        const entries = this.testResults.flatMap(test => test.attachments
+            .filter(attachment => attachment.name === attachmentName)
+            .map(attachment => ({ test, attachment })));
+
+        if (entries.length === 0) {
+            return `<div class="insight-empty">${this.escapeHtml(emptyMessage)}</div>`;
+        }
+
+        return `<div class="insight-list">${entries.map(({ test, attachment }) => {
+            const statusClass = test.status === 'passed' ? 'passed' : test.status === 'failed' || test.status === 'timedOut' ? 'failed' : 'skipped';
+            const statusText = test.status === 'passed' ? 'Passed' : test.status === 'failed' || test.status === 'timedOut' ? 'Failed' : 'Skipped';
+            const content = fs.readFileSync(path.resolve(attachment.path), 'utf-8');
+            const downloadPath = path.relative(path.dirname(this.outputFile), attachment.path).replace(/\\/g, '/');
+
+            return `<article class="insight-card">
+                <header class="insight-card-header">
+                    <div>
+                        <h3>${this.escapeHtml(test.title)}</h3>
+                        <p>${this.escapeHtml(test.location)}</p>
+                    </div>
+                    <span class="status-badge ${statusClass}">${statusText}</span>
+                </header>
+                <pre>${this.escapeHtml(content)}</pre>
+                <a href="${this.escapeHtml(downloadPath)}" download class="attachment-download">Download JSON</a>
+            </article>`;
+        }).join('')}</div>`;
+    }
+
     private generateTestDetailPanel(test: TestData): string {
         let html = '<div class="detail-panel">';
 
@@ -944,16 +1014,46 @@ class CustomTTAReporter implements Reporter {
             </div>`;
         }
 
-        if (test.attachments.length > 0) {
+        const aiDataAttachments = test.attachments.filter(attachment => attachment.name === 'ai-data');
+        const reportAttachmentNames = new Set(['ai-data', 'root-cause-analysis', 'flaky-analysis', 'self-heal-analysis']);
+        const apiAttachments = test.attachments.filter(attachment => !reportAttachmentNames.has(attachment.name));
+
+        if (apiAttachments.length > 0) {
             html += `
             <div class="detail-section api-section">
                 <div class="section-header" onclick="toggleSection(this)">
-                    <span class="section-arrow">▼</span> API Responses (${test.attachments.length})
+                    <span class="section-arrow">▼</span> API Responses (${apiAttachments.length})
                 </div>
                 <div class="section-content">
                     <div class="attachments-list">`;
 
-            for (const attachment of test.attachments) {
+            for (const attachment of apiAttachments) {
+                html += `
+                    <div class="attachment-item">
+                        <div class="attachment-header">
+                            <span>📄 ${this.escapeHtml(attachment.name)}</span>
+                            <a href="${attachment.path}" download class="attachment-download">Download JSON</a>
+                        </div>
+                        <pre class="attachment-content">${this.escapeHtml(fs.readFileSync(path.join(process.cwd(), attachment.path), 'utf-8'))}</pre>
+                    </div>`;
+            }
+
+            html += `
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        if (aiDataAttachments.length > 0) {
+            html += `
+            <div class="detail-section api-section">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="section-arrow">▼</span> AI Data (${aiDataAttachments.length})
+                </div>
+                <div class="section-content">
+                    <div class="attachments-list">`;
+
+            for (const attachment of aiDataAttachments) {
                 html += `
                     <div class="attachment-item">
                         <div class="attachment-header">
@@ -1328,6 +1428,71 @@ class CustomTTAReporter implements Reporter {
             color: var(--danger);
             font-weight: 700;
             font-size: 18px;
+        }
+
+        /* ========== REPORT TABS ========== */
+        .report-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .report-tab {
+            min-height: 42px;
+            padding: 10px 16px;
+            border: 1px solid var(--gray-200);
+            border-bottom: 0;
+            border-radius: 8px 8px 0 0;
+            background: white;
+            color: var(--gray-700);
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .report-tab:hover { background: var(--primary-bg); }
+        .report-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+        .report-tab:focus-visible { outline: 3px solid var(--info); outline-offset: 2px; }
+        .report-tab-panel { display: none; }
+        .report-tab-panel.active { display: block; }
+        .insight-list { display: grid; gap: 12px; }
+        .insight-card {
+            padding: 16px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            background: white;
+            box-shadow: var(--shadow-sm);
+        }
+        .insight-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .insight-card-header h3 { color: var(--dark); font-size: 15px; }
+        .insight-card-header p { color: var(--gray-500); font-size: 12px; }
+        .insight-card pre {
+            overflow: auto;
+            padding: 14px;
+            border-radius: var(--radius-sm);
+            background: var(--gray-50);
+            color: var(--gray-700);
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+        .insight-card .attachment-download { display: inline-block; margin-top: 10px; }
+        .insight-empty {
+            padding: 28px;
+            border: 1px dashed var(--gray-300);
+            border-radius: var(--radius-sm);
+            background: white;
+            color: var(--gray-500);
+            text-align: center;
         }
 
         /* ========== FILTERS ========== */
@@ -1932,6 +2097,18 @@ class CustomTTAReporter implements Reporter {
 
     private getScripts(): string {
         return `
+        function activateReportTab(tabName, button) {
+            document.querySelectorAll('.report-tab').forEach(tab => {
+                tab.classList.remove('active');
+                tab.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('.report-tab-panel').forEach(panel => panel.classList.remove('active'));
+
+            button.classList.add('active');
+            button.setAttribute('aria-selected', 'true');
+            document.getElementById('report-panel-' + tabName)?.classList.add('active');
+        }
+
         function toggleFileGroup(header) {
             const fileGroup = header.parentElement;
             fileGroup.classList.toggle('collapsed');

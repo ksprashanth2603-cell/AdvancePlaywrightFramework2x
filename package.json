@@ -3,7 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:bdd": "npm run cucumber:level0",
+    "cucumber:level0": "cross-env TS_NODE_PROJECT=src/Cucumber/tsconfig.json cucumber-js \"src/Cucumber/level-00-installation/features/**/*.feature\" --require-module ts-node/register --require-module tsconfig-paths/register --require \"src/Cucumber/level-00-installation/steps/**/*.ts\" --require \"src/Cucumber/support/**/*.ts\" --format progress",
+    "cucumber:level01": "cross-env TS_NODE_PROJECT=src/Cucumber/tsconfig.json cucumber-js \"src/Cucumber/level-01-basic/features/**/*.feature\" --require-module ts-node/register --require-module tsconfig-paths/register --require \"src/Cucumber/level-01-basic/steps/**/*.ts\" --require \"src/Cucumber/support/**/*.ts\" --format progress",
+    "cucumber:level02": "cross-env TS_NODE_PROJECT=src/Cucumber/tsconfig.json cucumber-js \"src/Cucumber/level-02-data-driven/features/**/*.feature\" --require-module ts-node/register --require-module tsconfig-paths/register --require \"src/Cucumber/level-02-data-driven/steps/**/*.ts\" --require \"src/Cucumber/level-01-basic/steps/**/*.ts\" --require \"src/Cucumber/support/**/*.ts\" --format progress",
+    "cucumber:headed": "cross-env TS_NODE_PROJECT=src/Cucumber/tsconfig.json HEADED=1 cucumber-js \"src/Cucumber/level-00-installation/features/**/*.feature\" --require-module ts-node/register --require-module tsconfig-paths/register --require \"src/Cucumber/level-00-installation/steps/**/*.ts\" --require \"src/Cucumber/support/**/*.ts\" --format progress",
+    "cucumber:headed:report": "cross-env TS_NODE_PROJECT=src/Cucumber/tsconfig.json HEADED=1 cucumber-js \"src/Cucumber/level-00-installation/features/**/*.feature\" --require-module ts-node/register --require-module tsconfig-paths/register --require \"src/Cucumber/level-00-installation/steps/**/*.ts\" --require \"src/Cucumber/support/**/*.ts\" --format json:tta-report/cucumber-results.json --format progress && node src/utils/CucumberReportGenerator.js",
+    "cucumber:headed:report:open": "npm run cucumber:headed:report && node -e \"require('child_process').exec(process.platform === 'win32' ? 'start \\\"\\\" tta-report/cucumber-report.html' : 'xdg-open tta-report/cucumber-report.html', () => {})\"",
+    "cucumber:level01:headed:report:open": "cross-env TS_NODE_PROJECT=src/Cucumber/tsconfig.json HEADED=1 cucumber-js \"src/Cucumber/level-01-basic/features/**/*.feature\" --require-module ts-node/register --require-module tsconfig-paths/register --require \"src/Cucumber/level-01-basic/steps/**/*.ts\" --require \"src/Cucumber/support/**/*.ts\" --format json:tta-report/cucumber-results.json --format progress && node src/utils/CucumberReportGenerator.js && node -e \"require('child_process').exec(process.platform === 'win32' ? 'start \\\"\\\" tta-report/cucumber-report.html' : 'xdg-open tta-report/cucumber-report.html', () => {})\"",
+    "cucumber:level02:headed:report:open": "cross-env TS_NODE_PROJECT=src/Cucumber/tsconfig.json HEADED=1 cucumber-js \"src/Cucumber/level-02-data-driven/features/**/*.feature\" --require-module ts-node/register --require-module tsconfig-paths/register --require \"src/Cucumber/level-02-data-driven/steps/**/*.ts\" --require \"src/Cucumber/level-01-basic/steps/**/*.ts\" --require \"src/Cucumber/support/**/*.ts\" --format json:tta-report/cucumber-results.json --format progress && node src/utils/CucumberReportGenerator.js && node -e \"require('child_process').exec(process.platform === 'win32' ? 'start \\\"\\\" tta-report/cucumber-report.html' : 'xdg-open tta-report/cucumber-report.html', () => {})\""
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -16,11 +26,13 @@
     "ajv": "^8.20.0",
     "ajv-formats": "^3.0.1",
     "allure-playwright": "^3.12.1",
+    "cross-env": "^10.1.0",
     "csv-parse": "^7.0.2",
     "dotenv": "^17.4.2",
     "jsonpath-plus": "^10.4.0",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.9.3",
     "winston": "^3.19.0",
     "xlsx": "^0.18.5"
   }

@@ -50,11 +50,7 @@ export default defineConfig({
 
   retries: process.env.CI ? 2 : 0,
 
-  reporter: [
-    ['html'],
-    ['list'],
-    ['./src/utils/CustomReporter.ts'],
-  ],
+  reporter: [['./src/utils/CustomReporter.ts']],
 
   use: {
     baseURL: resolveBaseURL(),
@@ -68,10 +64,18 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
+      testIgnore: '**/aiTest/**',
       use: {
         ...devices['Desktop Chrome'],
       }
-    }
+    },
+    {
+      name: 'ai-data-generator',
+      testDir: './src/tests/aiTest',
+      use: {
+        ...devices['Desktop Chrome'],
+      }
+    },
    
   ]
 });
