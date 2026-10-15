@@ -231,7 +231,7 @@ function parseFeature(feature, index) {
     });
 }
 
-function generateHistory(results) {
+function generateHistory() {
     const newestReport = `report_${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}${String(new Date().getDate()).padStart(2, '0')}_${String(new Date().getHours()).padStart(2, '0')}${String(new Date().getMinutes()).padStart(2, '0')}${String(new Date().getSeconds()).padStart(2, '0')}.html`;
     const files = fs.readdirSync(reportDir)
         .filter(file => file.startsWith('report_') && file.endsWith('.html'))
@@ -255,7 +255,7 @@ try {
     fs.writeFileSync(namedReportPath, html);
     fs.writeFileSync(reportPath, html);
     fs.writeFileSync(indexPath, `<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=${path.basename(namedReportPath)}"><title>TTA Report - Latest</title></head><body><p>Redirecting to <a href="${path.basename(namedReportPath)}">latest report</a>...</p></body></html>`);
-    generateHistory(results);
+    generateHistory();
     console.log(`✅ TTA Cucumber report generated: ${namedReportPath}`);
 } catch (error) {
     console.error(`❌ Failed to generate TTA Cucumber report: ${error.message}`);

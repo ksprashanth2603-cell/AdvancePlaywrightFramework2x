@@ -96,9 +96,8 @@ test.describe.serial('Restful Booker CRUD API', () => {
 
             const token = bookingFlowState.token;
             const bookingId = bookingFlowState.bookingId;
-            if (!token || !bookingId) {
-                throw new Error('Create token and create booking tests must pass before update booking.');
-            }
+            expect(token, 'Create token must pass before update booking.').toBeTruthy();
+            expect(bookingId, 'Create booking must pass before update booking.').toBeGreaterThan(0);
 
             const responseData = await request.put(`${baseUrl}/booking/${bookingId}`, {
                 headers: {

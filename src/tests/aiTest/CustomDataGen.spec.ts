@@ -21,11 +21,18 @@ const fallbackPayload: BookingPayload = {
     bookingdates: { checkin: '2027-03-12', checkout: '2027-03-16' },
     additionalneeds: 'Late checkout',
 };
+
+function bookingPayloadFromResult(
+    result: Awaited<ReturnType<typeof generateBookingData>>,
+): BookingPayload {
+    return result.status === 'available' ? result.data : fallbackPayload;
+}
+
 const apiBaseUrl = envOr('API_BASE_URL', 'https://restful-booker.herokuapp.com');
 
 test('AI-generated booking payload validates and is accepted by POST /booking', async ({ request }, testInfo) => {
     const agentResult = await generateBookingData({ scenario: 'a four-night leisure stay' });
-    const payload = agentResult.status === 'available' ? agentResult.data : fallbackPayload;
+    const payload = bookingPayloadFromResult(agentResult);
 
     expect(validateBookingPayload(payload), bookingPayloadValidationErrors()).toBe(true);
     await testInfo.attach('ai-data', {

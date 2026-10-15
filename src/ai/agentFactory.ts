@@ -7,7 +7,7 @@ export type AgentResult<T> =
     | { status: 'available'; data: T }
     | { status: 'unavailable'; reason: 'missing_api_key' | 'provider_error' | 'invalid_output' };
 
-export interface AgentDefinition<TInput, TOutput> {
+export interface AgentDefinition<TInput> {
     name: string;
     prompt: string | ((input: TInput) => string);
     schema: AnySchema;
@@ -25,7 +25,7 @@ function parseJson(content: string): unknown {
 }
 
 export function createAgent<TInput, TOutput>(
-    definition: AgentDefinition<TInput, TOutput>,
+    definition: AgentDefinition<TInput>,
 ): (input: TInput) => Promise<AgentResult<TOutput>> {
     const config = getAIProviderConfig();
     const client = new LLMClient(config);
