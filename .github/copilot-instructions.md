@@ -24,3 +24,5 @@
 - When changing a page object, also make sure the related test still passes.
 - When adding a new flow, prefer a fixture or page object abstraction.
 - When a locator is uncertain, mark it and validate before finalizing.
+- Before opening or updating a PR, run `pre-pr-quality-gates` and all four specialist skills in `.agents/skills/`.
+- Resolve blocking findings, rerun all four gates against the final diff, and record evidence in the PR template.

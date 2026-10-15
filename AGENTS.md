@@ -16,6 +16,8 @@ This repo is a Playwright + TypeScript test framework for TTACart. Follow the pr
 - Prefer page objects over inline selectors.
 - Prefer real UI assertions over mocks.
 - Use `npx playwright test` and trace/report artifacts for debugging.
+- Before opening or updating a PR, run the `pre-pr-quality-gates` skill and all four specialist skills in `.agents/skills/`.
+- Resolve every blocking finding, rerun all four gates on the final diff, and record evidence in the PR template.
 
 ## CI note
 - Do not commit secrets.

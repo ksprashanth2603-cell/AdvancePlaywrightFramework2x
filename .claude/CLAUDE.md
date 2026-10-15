@@ -19,3 +19,6 @@ Work with the Playwright framework in this repository using the project’s page
 
 ## Important
 Do not add secrets directly to committed files. Use `.env` locally or GitHub Actions secrets in CI.
+
+## Required PR quality gates
+Before opening or updating a PR, run `.claude/skills/pre-pr-quality-gates/SKILL.md` and all four specialist skills under `.agents/skills/`. Resolve blocking findings, rerun the gates on the final diff, and record evidence in the PR template.

@@ -66,6 +66,12 @@ On Linux or CI systems, use:
 npx playwright install --with-deps
 ```
 
+## AI Quality Gates
+
+Before opening or updating a pull request, run the `pre-pr-quality-gates` skill. It invokes the four shared skills in `.agents/skills/`: `ai-slop`, `ponytail`, `over-engineering`, and `framework-patterns`. Skills use the Agent Skills `SKILL.md` format; native wrappers are provided for Claude Code, Kiro, Devin, and Windsurf, while Copilot, Cursor, and OpenCode discover the shared skills directly.
+
+Record a passing outcome and specific evidence for every gate in the PR template. The `PR Quality Gates` workflow fails when a gate is missing, unchecked, not marked `PASS`, or has placeholder evidence. This validates the PR attestation, not the quality of a subjective review. To block merges until it passes, require the `PR Quality Gates / Required gate checklist` status check in branch protection settings.
+
 ## Configuration
 
 Create a local `.env` file in the project root:
