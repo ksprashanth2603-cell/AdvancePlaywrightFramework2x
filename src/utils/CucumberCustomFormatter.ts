@@ -10,6 +10,16 @@ interface GherkinStepLike {
     text?: string;
 }
 
+interface GherkinDocumentLike {
+    feature?: {
+        children?: ReadonlyArray<{
+            scenario?: {
+                steps?: ReadonlyArray<GherkinStepLike>;
+            };
+        }>;
+    };
+}
+
 interface ScenarioResult {
     feature: string;
     scenario: string;
@@ -96,11 +106,11 @@ export default class CucumberTTAFormatter extends Formatter {
         return attempt.worstTestStepResult?.status;
     }
 
-    private getGherkinStep(gherkinDocument: any, pickleStepId?: string): GherkinStepLike | undefined {
-        const scenarios = gherkinDocument.feature?.children
-            .flatMap((child: any) => child.scenario ? [child.scenario] : []);
+    private getGherkinStep(gherkinDocument: GherkinDocumentLike | undefined, pickleStepId?: string): GherkinStepLike | undefined {
+        const scenarios = gherkinDocument?.feature?.children
+            ?.flatMap(child => child.scenario ? [child.scenario] : []);
 
-        return scenarios?.flatMap((scenario: any) => scenario.steps || [])
+        return scenarios?.flatMap(scenario => scenario.steps || [])
             .find((step: GherkinStepLike) => step.id === pickleStepId);
     }
 

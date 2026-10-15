@@ -39,6 +39,7 @@ A Playwright + TypeScript automation framework for UI and API testing. It uses p
 ├── tta-report/
 ├── .env
 ├── .gitignore
+├── eslint.config.js
 ├── package.json
 ├── playwright.config.ts
 ├── tsconfig.json
@@ -64,6 +65,48 @@ On Linux or CI systems, use:
 
 ```bash
 npx playwright install --with-deps
+```
+
+## ESLint
+
+ESLint and its TypeScript and Playwright integrations are development dependencies. To install them in a fresh checkout:
+
+```bash
+npm install --save-dev eslint @eslint/js typescript-eslint eslint-plugin-playwright
+```
+
+The flat configuration in `eslint.config.js` enables the recommended ESLint and TypeScript rules, applies Playwright rules to `*.spec.ts` and `*.test.ts`, and excludes generated reports and test artifacts.
+
+```js
+const eslint = require('@eslint/js');
+const playwright = require('eslint-plugin-playwright');
+const tseslint = require('typescript-eslint');
+
+module.exports = tseslint.config(
+  { ignores: ['node_modules/**', 'logs/**', 'playwright-report/**', 'reports/**', 'test-results/**', 'tta-report/**'] },
+  eslint.configs.recommended,
+  ...tseslint.configs.recommended.map((config) => ({
+    ...config,
+    files: ['**/*.{ts,tsx,mts,cts}'],
+  })),
+  {
+    files: ['**/*.js', '**/*.cjs'],
+    languageOptions: {
+      globals: { console: 'readonly', module: 'readonly', process: 'readonly', require: 'readonly' },
+    },
+  },
+  {
+    files: ['**/*.spec.ts', '**/*.test.ts'],
+    ...playwright.configs['flat/recommended'],
+  },
+);
+```
+
+Run linting or apply safe automatic fixes:
+
+```bash
+npm run lint
+npm run lint:fix
 ```
 
 ## Configuration

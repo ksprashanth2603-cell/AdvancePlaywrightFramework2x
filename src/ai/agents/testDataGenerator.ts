@@ -1,4 +1,5 @@
 import Ajv, { type AnySchema } from 'ajv';
+import { createRequire } from 'node:module';
 import { createAgent } from '../agentFactory';
 
 export interface BookingPayload {
@@ -13,7 +14,8 @@ export interface BookingPayload {
     additionalneeds?: string;
 }
 
-const bookingSchema = require('../../testdata/schemas/create-booking.schema.json') as AnySchema;
+const loadFromCurrentModule = createRequire(__filename);
+const bookingSchema = loadFromCurrentModule('../../testdata/schemas/create-booking.schema.json') as AnySchema;
 const bookingAjv = new Ajv({ allErrors: true });
 const validate = bookingAjv.compile<BookingPayload>(bookingSchema);
 

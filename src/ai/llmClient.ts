@@ -20,6 +20,10 @@ export interface LLMClientOptions {
 
 const log = createLogger('LLMClient');
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+    return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
 export class LLMClient {
     constructor(private readonly config: AIProviderConfig) {}
 
@@ -62,7 +66,10 @@ export class LLMClient {
             throw lastError instanceof Error ? lastError : new Error('AI provider request failed');
         }
 
-        const payload = await response.json() as Record<string, any>;
+        const payload: unknown = await response.json();
+        if (!isRecord(payload)) {
+            throw new Error('AI provider response was not a JSON object');
+        }
         const result = this.readResponse(payload);
         log.info(
             `provider=${this.config.provider} model=${this.config.model} latencyMs=${Date.now() - startedAt} ` +
@@ -116,27 +123,36 @@ export class LLMClient {
         };
     }
 
-    private readResponse(payload: Record<string, any>): LLMResponse {
+    private readResponse(payload: Record<string, unknown>): LLMResponse {
+        const usage = isRecord(payload.usage) ? payload.usage : {};
+
         if (this.config.provider === 'anthropic') {
-            const content = payload.content?.find((item: Record<string, unknown>) => item.type === 'text')?.text;
+            const contentBlocks = Array.isArray(payload.content) ? payload.content : [];
+            const textBlock = contentBlocks.find(item => isRecord(item) && item.type === 'text');
+            const content = isRecord(textBlock) ? textBlock.text : undefined;
             if (typeof content !== 'string') {
                 throw new Error('AI provider response did not contain text');
             }
             return {
                 content,
-                inputTokens: payload.usage?.input_tokens,
-                outputTokens: payload.usage?.output_tokens,
+                inputTokens: typeof usage.input_tokens === 'number' ? usage.input_tokens : undefined,
+                outputTokens: typeof usage.output_tokens === 'number' ? usage.output_tokens : undefined,
             };
         }
 
-        const content = payload.choices?.[0]?.message?.content;
+        const choices = Array.isArray(payload.choices) ? payload.choices : [];
+        const firstChoice = choices[0];
+        const message = isRecord(firstChoice) && isRecord(firstChoice.message)
+            ? firstChoice.message
+            : undefined;
+        const content = message?.content;
         if (typeof content !== 'string') {
             throw new Error('AI provider response did not contain text');
         }
         return {
             content,
-            inputTokens: payload.usage?.prompt_tokens,
-            outputTokens: payload.usage?.completion_tokens,
+            inputTokens: typeof usage.prompt_tokens === 'number' ? usage.prompt_tokens : undefined,
+            outputTokens: typeof usage.completion_tokens === 'number' ? usage.completion_tokens : undefined,
         };
     }
 }

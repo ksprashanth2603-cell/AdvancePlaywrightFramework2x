@@ -8,7 +8,6 @@
 
 import {
     FullConfig,
-    FullResult,
     Reporter,
     Suite,
     TestCase,
@@ -208,20 +207,19 @@ class CustomTTAReporter implements Reporter {
     onTestEnd(test: TestCase, result: TestResult): void {
         this.suiteStats.total++;
 
-        let status: 'passed' | 'failed' | 'skipped' | 'timedOut' = 'passed';
-        let statusIcon = '✅';
-        if (result.status === 'passed') {
+        const status: 'passed' | 'failed' | 'skipped' | 'timedOut' = result.status === 'passed'
+            ? 'passed'
+            : result.status === 'failed' || result.status === 'timedOut'
+                ? result.status
+                : 'skipped';
+        const statusIcon = status === 'passed' ? '✅' : status === 'skipped' ? '⏭️' : '❌';
+
+        if (status === 'passed') {
             this.suiteStats.passed++;
-            status = 'passed';
-            statusIcon = '✅';
-        } else if (result.status === 'failed' || result.status === 'timedOut') {
+        } else if (status === 'failed' || status === 'timedOut') {
             this.suiteStats.failed++;
-            status = result.status === 'timedOut' ? 'timedOut' : 'failed';
-            statusIcon = '❌';
         } else {
             this.suiteStats.skipped++;
-            status = 'skipped';
-            statusIcon = '⏭️';
         }
 
         const testTime = this.formatDuration(result.duration);
@@ -434,7 +432,7 @@ class CustomTTAReporter implements Reporter {
         return html;
     }
 
-    async onEnd(_result: FullResult): Promise<void> {
+    async onEnd(): Promise<void> {
         this.endTime = new Date();
         const duration = this.formatDuration(this.endTime.getTime() - this.startTime.getTime());
         const passRate = this.suiteStats.total > 0
